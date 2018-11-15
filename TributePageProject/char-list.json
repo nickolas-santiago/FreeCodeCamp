@@ -1,0 +1,420 @@
+{"characters":[
+    {
+        "name":"Mario",
+        "img_url":"https://www.gamestop.com/gs/images/content-pdp/gameinformer/odysseyhero1.jpg",
+        "img_caption":"Mario’s face and cap are some the most iconic images in gaming.",
+        "blurb":[
+            "Mario is a fictional character in the <em>Mario</em> video game franchise, owned by Nintendo and created by Japanese video game designer Shigeru Miyamoto. Serving as the company's mascot and the eponymous protagonist of the series, Mario has appeared in over 200 video games since his creation. Depicted as a short, pudgy, Italian plumber who resides in the Mushroom Kingdom, his adventures generally center upon rescuing Princess Peach from the Koopa villain Bowser. His younger brother and sidekick is Luigi.",
+            "With more than 500 million units sold worldwide, the overall Mario franchise is the best-selling video game franchise of all time. Outside of the <em>Super Mario</em> platform series, other <em>Mario</em> genres include the <em>Mario Kart</em> racing series, sports games such as the <em>Mario Tennis</em> and <em>Mario Golf</em> series, role-playing games such as <em>Mario & Luigi</em>, <em>Super Mario RPG</em> and <em>Paper Mario</em>.The franchise has branched into several media, including television shows, film, comics, and licensed merchandise."
+        ],
+        "games":[
+            {
+                "year":"1981",
+                "description":"Mario debuted as 'Jumpman' in the arcade game <em>Donkey Kong</em> on July 9, 1981. He is shown to be a carpenter and has a pet ape called Donkey Kong. The carpenter mistreats the ape and Donkey Kong escapes to kidnap Jumpman's girlfriend, originally known as the Lady, but later named Pauline. The player must take the role of Jumpman and rescue the girl."
+            },
+            {
+                "year":"1985",
+                "description":"In <em>Super Mario Bros.</em> for the Nintendo Entertainment System, Mario saves Princess Toadstool (later known as Princess Peach) of the Mushroom Kingdom from King Koopa. To save Princess Toadstool, Mario conquers the eight worlds of the Mushroom Kingdom by going to the castle in each to defeat a minion of King Koopa."
+            },
+            {
+                "year":"1988",
+                "description":"Mario is joined by Luigi, Toad, and Princess Peach in <em>Super Mario Bros. II</em>."
+            },
+            {
+                "year":"1988",
+                "description":"In <em>Super Mario Bros. 3</em>, Mario quests to save the rulers of seven kingdoms from Bowser and his children, the Koopalings, and Mario travels across eight worlds to restore order to the Mushroom World and to rescue Princess Peach."
+            },
+            {
+                "year":"1996",
+                "description":"Mario’s 3D debut was <em>Super Mario 64</em>, sees our hero explore Peach’s castle and other worlds to recover stars that lead him to battles with Bowser."
+            },
+            {
+                "year":"2002",
+                "description":"In <em>Super Mario Sunshine</em>, Mario, Toadsworth, and Princess Peach take a vacation to Isle Delfino, a tropical island. A person resembling Mario, known as ‘Shadow Mario’, vandalizes and pollutes the entire island using a magic paintbrush. The vandalism has caused the Shine Sprites to flee from the island's main city, Delfino Plaza, and blanket the island in darkness."
+            },
+            {
+                "year":"2007",
+                "description":" In <em>Super Mario Galaxy</em>, Mario is invited by Princess Peach to the centennial Star Festival in the Mushroom Kingdom. Upon arrival, Bowser invades the kingdom and rips Peach's castle from its foundations and lifts it into outer space. After failing to prevent the princess from being kidnapped, Mario meets star-like creatures called Lumas and their companion, Rosalina."
+            },
+            {
+                "year":"2010",
+                "description":"The last game saw a preview, <em>Super Mario Galaxy 2</em>, where Bowser, who has transformed himself into a giant using the Power Stars, attacks the Mushroom Kingdom and abducts Peach, taking her to the center of the universe. With the help of the Lumas, Mario pilots Starship Mario, a mobile planet in the shape of his head, in order to travel to various galaxies and gather the Power Stars, used to fuel the ship."
+            },
+            {
+                "year":"2017",
+                "description":"<em>Super Mario Odyssey</em>, where the character Cappy replaces Mario's traditional hat, allowing Mario to throw it like a long-range weapon, and ‘capture’ enemies to gain their abilities."
+            }
+        ],
+        "link":"https://en.wikipedia.org/wiki/Mario",
+        "button_background_color":"#FB001B",
+        "page_background_color":"#9e7373"
+    },
+    {
+        "name":"Donkey Kong",
+        "img_url":"https://i.ytimg.com/vi/tVy2PMDEQsk/maxresdefault.jpg",
+        "img_caption":"Ever the cool guy, Donkey Kong poses against the Battlefield (presumably after kicking everyone else off it).",
+        "blurb":[
+            "Donkey Kong first made his appearance in the 1981 arcade machine called <em>Donkey Kong</em>, in which he faced Jumpman (Mario). This game was also the first appearance of Mario, pre-dating the well-known <em>Super Mario Bros.</em> by four years.",
+            "In 1994, the series was revived as the <em>Donkey Kong Country</em> series, featuring Donkey Kong and his clan as protagonists in their native jungle setting versus a variety of anthropomorphic enemies, usually against the Kremlings, a clan of crocodiles, and their leader King K. Rool. These are side-scrollingplatform games. Titles outside these two genres have included rhythm games (<em>Donkey Konga</em>), racing games (<em>Diddy Kong Racing</em>), and edutainment (<em>Donkey Kong Jr. Math</em>)."
+        ],
+        "games":[
+            {
+                "year":"1981",
+                "description":"<em>Donkey Kong</em> see Donkey Kong as the main villain. He steals Pauline away from Wtachamn andm, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillu."
+            },
+            {
+                "year":"1982",
+                "description":"<em>Donkey Kong II</em> was developed by Nintendo R&D1 and was released in 1983, as part of the Game & Watch Multi Screen series."
+            },
+            {
+                "year":"1983",
+                "description":"In <em>Donkey Kong 3</em>, Stanley is a bugman. Donkey Kong has taken refuge in his greenhouse and it is now up to Stanley to stop the ape from stirring up any more insects that will soon destroy his flowers."
+            },
+            {
+                "year":"1983",
+                "description":"In <em>Donkey Kong 3</em>, Stanley is a bugman. Donkey Kong has taken refuge in his greenhouse and it is now up to Stanley to stop the ape from stirring up any more insects that will soon destroy his flowers."
+            },
+            {
+                "year":"1994",
+                "description":"In <em>Donkey Kong Country</em>, the original Donkey Kong's grandson, also called Donkey Kong, was the hero and he and his sidekick Diddy Kong had to save his hoard of bananas from the thieving King K. Rool and his Kremling Krew."
+            },
+            {
+                "year":"1995",
+                "description":"The story of <em>Donkey Kong Country 2: Diddy's Kong Quest</em> revolves around Diddy Kong and his girlfriend, Dixie Kong, who try to rescue Donkey Kong after he is abducted by King K. Rool. The game is set on 'Crocodile Isle'."
+            },
+            {
+                "year":"1996",
+                "description":"The plot for <em>Donkey Kong Country 3: Dixie Kong's Double Trouble!</em> revolves around Dixie Kong and her cousin, Kiddy Kong, in their attempts to rescue the kidnapped Donkey Kong and Diddy Kong from series antagonist King K. Rool. The game is set in the 'Northern Kremisphere', a fictionalised version of northern Europe and Canada."
+            },
+            {
+                "year":"1999",
+                "description":"<em>Donkey Kong 64</em> allows you to play as DK, Diddy Kong, Lanky Kong, Tiny Kong and Chunky Kong to save Donkey Kong Island from destruction at the hands of K. Rool and his Kremling Krew in the series's first <u>fully 3D adventure</u>. It also features thrilling multiplayer arena-battle modes."
+            },
+            {
+                "year":"2004",
+                "description":"Donkey Kong, originally a villain, returns to this role in <em>Mario vs. Donkey Kong</em>: wanting a Mini Mario clockwork toy, he finds that they are sold out at a local toy store. Enraged, he terrifies the Toads at the factory and steals the toys. This sets up the game's plot, where Mario chases Donkey Kong until he can take the Mini Marios back from Donkey Kong."
+            },
+            {
+                "year":"2006",
+                "description":"The Mini-Mario toys work their way through eight floors, each with nine challenging rooms, confronting Donkey Kong on each floor in <em>Mario vs. Donkey Kong 2: March of the Minis</em> Eventually, Mario and the Mini-Mario toys reach the roof and defeat Donkey Kong."
+            },
+            {
+                "year":"2010",
+                "description":"Donkey Kong's issues continued in <em>Mario vs. Donkey Kong: Mini-Land Mayhem!</em>. Mini-Land is having its grand opening, and the first 100 customers get a free Mini-Pauline. Donkey Kong cuts in line to get one, only to find that he was the 101st customer. Angered, Donkey Kong kidnaps Pauline, and Mario uses the Minis to follow him through a number of attractions."
+            },
+            {
+                "year":"2010",
+                "description":"<em>Donkey Kong Country Returns</em> story focuses on a group of evil creatures called Tikis known as the Tiki Tak Tribe that arrive on Donkey Kong Island, and hypnotize the island's animals to steal Donkey Kong's bananas. This forces him to retrieve the hoard with the help of his friend Diddy Kong."
+            },
+            {
+                "year":"2014",
+                "description":"Snowmads seize Donkey Kong Island for their own, turning it into a frosty area lor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis  with continuous snowfall."
+            }
+        ],
+        "link":"https://en.wikipedia.org/wiki/Donkey_Kong_(character)",
+        "button_background_color":"#9A5F28",
+        "page_background_color":"#9e8773"
+    },
+    {
+        "name":"Link",
+        "img_url":"https://s.aolcdn.com/hss/storage/midas/6259c9a8469c47fd54d3796c672cee2d/206540985/linkfeatnew.jpg",
+        "img_caption":"Link appears riding his bike along a lush track.",
+        "blurb":[
+            "Link is the main playable character of Nintendo's video game series <em>The Legend of Zelda</em>. He appears in several incarnations over the course of the games, and also features in other Nintendo media, including merchandising, comic books, and a cartoon series. He is one of Nintendo's main icons and one of the most well-known and popular characters in video game history.",
+            "Through <em>The Legend of Zelda</em> series, Link is depicted as a child, teenager, or young adult of the Hylian race, originating from the fictional land of Hyrule. Link often travels through Hyrule, defeating creatures, evil forces, and the series' primary antagonist, Ganon, while attempting to save Princess Zelda and Hyrule. To defeat Ganon, Link usually requires the mystic Master Sword and Light Arrows, or a similar legendary weapon, obtained after many trials and battles. In the course of his journey he will typically acquire various other magical objects or items, including musical instruments and weaponry."
+        ],
+        "games":[
+            {
+                "year":"1986",
+                "description":"Our hero makes his debut in <em>The Legend of Zelda</em> to resuce the princess from the evil Ganon, who has stolen the Triforce of Power."
+            },
+            {
+                "year":"1987",
+                "description":"Several years after his debut, our hero returns in <em>Zelda II: The Adventure of Link</em> to defeat his evil shadow clone and claim the Triforce of Courage."
+            },
+            {
+                "year":"1991",
+                "description":"<em>The Legend of Zelda: A Link to the Past</em> serves as a prequel showing how the evil Ganon was released."
+            },
+            {
+                "year":"1993",
+                "description":"Link travels the world preparing himself for Ganon's return in the Gameboy's <em>The Legend of Zelda: Link's Awakening</em>."
+            },
+            {
+                "year":"1998",
+                "description":"In <em>The Legend of Zelda: Ocarina of Time</em>, Link must constantly travel between the present and the future by using the titular Ocarina of Time in order to stop Ganondorf's takeover of Hyrule. This is the <u>first 3D zelda game</u>."
+            },
+            {
+                "year":"2000",
+                "description":"My personal favorite Zelda game, <em>The Legend of Zelda: Majora's Mask</em>, sees Link save Termina from the evil of Majora's Mask, which has drawn the moon into a decaying orbit, threatening to crash into Termina's primary town, Clock Town, in three days."
+            },
+            {
+                "year":"2001",
+                "description":"<em>The Legend of Zelda: Oracle of Seasons</em> and <em>Legend of Zelda: Oracle of Ages</em> feature the Triforce sending Link on a mission to the foreign lands of Holodrum and Labrynna in order to stop the disruption of the seasons."
+            },
+            {
+                "year":"2002",
+                "description":"In <em>The Legend of Zelda: Four Swords</em>, Link is split into four! The Links must cooperate to overcome obstacles, collect keys, and storm Vaati's Palace so they can rescue Zelda and reseal the Wind Mage."
+            },
+            {
+                "year":"2002",
+                "description":"Link travels the Great Sea in <em>The Legend of Zelda: The Wind Waker</em> to rescue his sister and defeat the Helmaroc King; his quest intertwining with that of The King of Red Lions, who, after many trials, entitles Link as the 'Hero of Winds'."
+            },
+            {
+                "year":"2004",
+                "description":"<em>The Legend of Zelda: The Minish Cap</em> features Link as a young boy living with his grandfather, the Master Smith of Hyrule. It is a prequel to <em>Four Swords</em>."
+            },
+            {
+                "year":"2006",
+                "description":"During his journey to rescue his friends in <em>The Legend of Zelda: Twilight Princess</em>, Link discovers that the entire kingdom of Hyrule has been covered by a dark twilight, in which most people are reduced to nothing more than spirits. However, Link is transformed into a wolf upon entering the twilight. While in this form, he is aided by Midna, an imp-like creature, and eventually cleanses the land from the twilight."
+            },
+            {
+                "year":"2007",
+                "description":"Link embarks on a quest to reunite with Tetra after she is lost to the Ghost Ship and turned into stone by Bellumm in <em>The Legend of Zelda: Phantom Hourglass</em>."
+            },
+            {
+                "year":"2009",
+                "description":"Link and Zelda have to restore the Spirit Tracks to New Hyrule and recover Princess Zelda's body from Chancellor Cole after he uses it to revive Malladus, a Demon King who once ravaged the land that would become New Hyrule in <em>The Legend of Zelda: Spirit Tracks</em>."
+            },
+            {
+                "year":"2011",
+                "description":"During his journey in <em>The Legend of Zelda: Skyward Sword</em>, Link imbues the Goddess Sword with three sacred flames, which result in it being reforged into the Master Sword."
+            },
+            {
+                "year":"2013",
+                "description":"In <em>The Legend of Zelda: A Link Between Worlds</em>, Link is a blacksmith's apprentice who is forced to rescue the Seven Sages, descendants of the original Sages who sealed the Sacred Realm years ago, after Yuga, a sorcerer who has the ability to 'merge' into walls and turn people into paintings, brings them to another world, the Kingdom of Lorule, in the form of paintings to revive Ganon."
+            },
+            {
+                "year":"2017",
+                "description":"<em>The Legend of Zelda: Breath of the Wild</em> is set thousands of years after Ocarina of Time, though it is not specified as to whether it occurs in the 'Adult Link Timeline', 'Child Link Timeline', or 'Fallen Hero Timeline'. Link awakens after a century in a stasis pod, and comes to discover that an evil force called the Calamity Ganon has been trapped in Hyrule Castle for as long as he had been in stasis."
+            }
+        ],
+        "link":"https://en.wikipedia.org/wiki/Link_(The_Legend_of_Zelda)",
+        "button_background_color":"#529045",
+        "page_background_color":"#739e82"
+    },
+    {
+        "name":"Samus Aran",
+        "img_url":"https://d2rd7etdn93tqb.cloudfront.net/wp-content/uploads/2017/06/samus-zero-suit-super-smash-bros-061417.jpg",
+        "img_caption":"Samus stands here beside her armor, a suit filled with devastating weapons.",
+        "blurb":[
+            "Samus Aran is an ex-soldier of the Galactic Federation who became a galactic bounty hunter, usually fitted with a powered exoskeleton that is equipped with weapons such as directed-energy weapons and missiles. Throughout the series, she executes missions given to her by the Galactic Federation while hunting the antagonistic Space Pirates and their leader Ridley, along with the parasitic energy-draining organisms called Metroids.",
+            "Samus has appeared in every <em>Metroid</em> video game and has also been featured in media outside of the series, including in the <em>Super Smash Bros.</em> series and in the comic book version of <em>Captain N: The Game Master</em>. She is well known as one of the earliest female protagonists in video game history and has remained a popular character over thirty years after her first appearance."
+        ],
+        "games":[
+            {
+                "year":"1986",
+                "description":"In <em>Metroid</em>, Samus travels through the caverns of the planet Zebes to stop the Space Pirates from exploiting the parasitic organisms known as Metroids for galactic domination."
+            },
+            {
+                "year":"1991",
+                "description":"The Galactic Federation deems the Metroid species too dangerous to exist, and after their own failed attempts, employs Samus to travel to the Metroid homeworld, SR388, and exterminate the entire species in <em>Metroid II: Return of Samus</em>."
+            },
+            {
+                "year":"1994",
+                "description":"In <em>Super Metroid</em>, Samus receives a distress signal from the Ceres research lab. She returns just in time to catch Ridley stealing the hatchling, having killed all of the scientists. She follows Ridley to a rebuilt base on Zebes, where the Space Pirates are once again attempting to clone the Metroids and use them as weapons."
+            },
+            {
+                "year":"2002",
+                "description":"While acting as a bodyguard for researchers on the planet SR388 at the start of <em>Metroid Fusion</em>, Samus is infected by a native creature known as the X Parasite, originally the prey of the Metroid species. Doctors surgically remove portions of her armor and cure the X infection with a vaccine created from the DNA of the Metroid hatchling."
+            },
+            {
+                "year":"2002",
+                "description":"In <em>Metroid Prime</em>, Samus receives a distress signal in her new ship and travels to Tallon IV to stop the Space Pirates from exploiting a powerful radioactive substance known as Phazon. She discovers that the Chozo once settled on this planet, and their disappearance, as well as the emergence of Phazon, is due to a meteor impacting the planet decades ago."
+            },
+            {
+                "year":"2004",
+                "description":"Samus is sent to investigate the planet Aether after a squad of GF Marines was lost there. In <em>Metroid Prime 2: Echoes</em>, amus returns to SR388, where a parasitic organism infects and nearly kills her. Galactic Federation scientists surgically remove large portions of her corrupted Power Suit and inject her with the Metroid hatchling's DNA to save her. To prevent the now-dubbe."
+            },
+            {
+                "year":"2007",
+                "description":"Samus, along with bounty hunters Rundas, Ghor, and Gandrayda in <em>Metroid Prime 3: Corruption</em> are brought together in a ship over Norion to discuss a Space Pirate infection sweeping the Galactic Federation supercomputer network, one composed of organic Aurora Unit systems. Having this network shut down allows for the Pirates to engage in large scale combat in an attempt to further spread Phazon. As a battle erupts on Norion's surface, enormous Phazon-based seedships, called Leviathans, also begin to rain from the sky onto planets in order to begin corrupting them with Phazon."
+            },
+            {
+                "year":"2010 ",
+                "description":"In <em>Metroid: Other M</em>, our hero encounters a squad of Galactic Federation soldiers, including her friend Anthony Higgs and her former superior officer Adam Malkovich. They find out that the director of the ship, Madeline Bergman, has been conducting research on illegal bioweapons for the Federation."
+            }
+        ],
+        "link":"https://en.wikipedia.org/wiki/Samus_Aran",
+        "button_background_color":"#C59E5D",
+        "page_background_color":"#ddb185"
+    },
+    {
+        "name":"Yoshi",
+        "img_url":"http://media.comicbook.com/2017/12/yoshi-mario-1070269.jpeg",
+        "img_caption":"Clearly the cutest character in the <em>Mario</em> series, Yoshi can create eggs using the carcasses of his fallen victims.",
+        "blurb":[
+            "Yoshi is a fictional anthropomorphic dinosaur who appears in video games published by Nintendo. Yoshi debuted in <em>Super Mario World</em>(1990) on the Super Nintendo Entertainment System as Mario and Luigi's sidekick. Yoshi later starred in platform and puzzle games, including <em>Super Mario World 2: Yoshi's Island</em>, <em>Yoshi's Story</em> and <em>Yoshi's Woolly World</em>. Yoshi also appears in many of the Mario spin-off games, including <em>Mario Party</em> and <em>Mario Kart</em>, various Mario sports games, and Nintendo's crossover fighting game series Super Smash Bros. Yoshi belongs to the species of the same name, which is characterized by their variety of colors."
+        ],
+        "games":[
+            {
+                "year":"1995",
+                "description":"Yoshi’s debut was in <em>Super Mario World 2: Yoshi’s Island</em> in which the player must control Yoshi in order to keep Baby Mario out of harm's way through the game."
+            },
+            {
+                "year":"1997",
+                "description":"In <em>Yoshi’s Story</em>, Baby Bowser becomes envious of the Yoshis’ happiness and casts a spell to transform the entire island into a pop-up storybook. In addition he also steals the Super Happy Tree, further weakening the Yoshis and making them fall to gloom."
+            },
+            {
+                "year":"2004",
+                "description":"When Bowser starts wreaking havoc on Yoshi's Island in <em>Yoshi's Universal Gravitation</em> (or <em>Yoshi Topsy-Turvy</em> in North America), a book spirit named Hongo traps the entire island within the pages of a storybook. Only by locking Bowser away Yoshi can convince Hongo to release the rest of the island, so he sets out to progress through the chapters of the book."
+            },
+            {
+                "year":"2005",
+                "description":"As opposed to the earlier <em>Yoshi</em> games, in <em>Yoshi Touch & Go</em> the player cannot take direct control over the characters. Instead, the Yoshis move from the left to the right automatically at a certain speed. However, the player can draw lines on the lower screen with the stylus, which creates clouds that will support a character."
+            },
+            {
+                "year":"2014",
+                "description":"The opening of <em>Yoshi's New Island</em> reveals that the stork had delivered babies to the wrong couples. The stork reclaims the babies and sets off to locate their real parents, but is ambushed by Kamek in mid-flight. Kamek captures the stork and Baby Luigi, but Baby Mario falls and reunites with the Yoshi clan on Egg Island, a floating island that was conquered by Baby Bowser."
+            },
+            {
+                "year":"2015",
+                "description":"In <em>Yoshi's Woolly World</em>, in a knitted island filled with many Yarn Yoshis of varying patterns, the evil Magikoopa Kamek turns nearly all the Yoshis into bundles of yarn for his master Baby Bowser, scattering them across different worlds. However, two Yoshis manage to avoid being transformed themselves, and they set off to pursue Kamek and rescue their woolly friends."
+            }
+        ],
+        "link":"https://en.wikipedia.org/wiki/Yoshi",
+        "button_background_color":"#80E861",
+        "page_background_color":"#61a57c"
+    },
+    {
+        "name":"Kirby",
+        "img_url":"https://s3.amazonaws.com/tinycards/image/859564171bfd3803d960b4ec2ea880b6",
+        "img_caption":"Kirby is a versatile warrior. None can stop the Kiby. All will fall.",
+        "blurb":[
+            "As one of Nintendo's most famous and familiar icons, Kirby's round appearance and ability to copy his foes' powers has made him a well-known figure in video games, consistently ranked as one of the most iconic video game characters. He first appeared in 1992 in <em>Kirby's Dream Land</em> for the Game Boy. Originally a placeholder, created by Masahiro Sakurai, at the age of 19, for the game's early development, he has since then starred in over 20 games, ranging from action platformers to puzzle, racing, and even pinball, and has been featured as a playable fighter in all <em>Super Smash Bros.</em> games.",
+            "Kirby is well known for his ability to inhale objects and creatures to gain their abilities, as well as his ability to float by expanding his body. He uses these abilities to rescue various lands, such as his home world of Pop Star, from evil forces and antagonists, such as Dark Matter or Nightmare. On these adventures he often crosses paths with his rivals, the gluttonous King Dedede and the mysterious Meta Knight."
+        ],
+        "games":[
+            {
+                "year":"1992",
+                "description":"A simple game, consisting of six levels, <em>Kirby's Dream Land</em> introduced Kirby's ability to inhale enemies and objects. The game contains an unlockable hard mode, known as the 'Extra Game', which features stronger enemies and more difficult bosses. "
+            },
+            {
+                "year":"1993",
+                "description":"<em>Kirby's Adventure</em> gave Kirby the ability to gain special powers when he ate certain enemies, called copy abilities; the game contained a total of 25 different ones to use. These powers replaced Kirby's inhale and could be used until Kirby sustained damage causing him to drop the ability, or the player voluntarily discarded it to obtain another one."
+            },
+            {
+                "year":"1995",
+                "description":"<em>Kirby's Dream Land 2</em> introduced three rideable animal companions: Rick the Hamster, Coo the Owl, and Kine the Ocean Sunfish. Pairing up with any of these three alters how Kirby's abilities work."
+            },
+            {
+                "year":"1996",
+                "description":"Gameplay for <em>Kirby Super Star</em> takes place across seven main modes and several sub-games. "
+            },
+            {
+                "year":"1997",
+                "description":"When <em>Kirby's Dream Land 3</em> opens, Kirby and Gooey are on a fishing trip, when all of a sudden, Dark Matter appears and shatters the planet's rings. He then proceeds to possess various Dream-Landers, including King Dedede. Kirby and Gooey then team up with Rick, Coo, and Kine, as well as new characters Pitch, ChuChu, and Nago. "
+            },
+            {
+                "year":"2000",
+                "description":"Ripple Star, a planet populated by fairies, is invaded and conquered by Dark Matter. Ribbon, one of the fairies, flees from home with their sacred treasure, the great Crystal. In their pursuit, three Dark Matter shatter the Crystal into pieces throughout the galaxy and Ribbon falls onto Pop Star. Ribbon, heartbroken to find she is left with only one of the shards, helps Kirby, being predicament and agrees to retrieving all the Crystal Shards and save Ripple Star from the Dark Matter's control during <em>Kirby 64: The Crystal Shards</em>, our hero's <u>first 3D adventure</u>."
+            },
+            {
+                "year":"2004",
+                "description":"<em>Kirby & the Amazing Mirror</em> features Kirby in a Metroidvania format, with all the levels being interconnected and able to be completed in any order. Also unique was the in-game phone, which can be used to summon up to three additional copies of Kirby to fight enemies and solve puzzles."
+            },
+            {
+                "year":"2006",
+                "description":"Here is how <em>Kirby: Squeak Squad</em> begins: Early afternoon in Dream Land... It's so peaceful even the clouds are drowsy. And now it's Kirby's favorite time of day: snack time! Today's yummy snack is a sweet, fluffy slice of strawberry shortcake! Time to dig in... WHOA! The cake Kirby was about to eat has suddenly vanished! That scrumptious, berry-topped slice of mouth-watering goodness... No doubt about it! This must be the work of King Dedede! Well, there's no time to waste! Gotta get that cake back! And that's how Kirby's latest fantastic adventure begins..."
+            },
+            {
+                "year":"2010",
+                "description":"Yin-Yarn, the evil sorcerer who possessed a tomato (revealed to be a Metamato), appears in <em>Kirby's Epic Yarn</em> and magically banishes Kirby into Patch Land, a world completely made of fabric, via the sock carried around his neck. In Patch Land, Kirby's body transforms into yarn, rendering both his power to inhale and the ability to fly useless. Instead, Kirby is granted the ability to transform by the magic of the Metamato."
+            },
+            {
+                "year":"2011",
+                "description":"The story for <em>Kirby's Return to Dream Land</em> begins with Kirby carrying a cake, while King Dedede and Waddle Dee chase him, as they run past Meta Knight, who is reading a book. Kirby and the gang suddenly see a starship flying out of a wormhole, prompting them to investigate. They enter the ship and encounter an extraterrestrial named Magolor, a frantic creature who discovers that the five vital pieces of his ship, the Lor Starcutter, along with the 120 crucial Energy Spheres, have been scattered across the planet."
+            },
+            {
+                "year":"2018",
+                "description":"On the Jambandra space station far away from Kirby's home planet, a dark crystal heart explodes due to an imperfection in a mysterious ritual, sending its numerous fragments, Jamba Hearts, hurtling into deep space. Many characters, including King Dedede and Meta Knight, are possessed while investigating the hearts that land on Popstar. A heart hits Kirby, but it instead gives him the ability to befriend enemies by throwing hearts. Kirby notices many Waddle Dees bringing food to Castle Dedede and decides to."
+            }
+        ],
+        "link":"https://en.wikipedia.org/wiki/Kirby_(character)",
+        "button_background_color":"#FDD1E8",
+        "page_background_color":"#ffd6d6"
+    },
+    {
+        "name":"Fox McCloud",
+        "img_url":"https://i1.wp.com/killscreen.com/wp-content/uploads/2014/04/Super-Smash-Bros-for-Wii-U-Fox-McCloud.jpg?fit=864%2C486&ssl=1",
+        "img_caption":"HIYYYAAAAAAAAA!!",
+        "blurb":[
+            "Fox McCloud is an anthropomorphic fox video game character and the chief protagonist of Nintendo's <em>Star Fox</em> series. He was created and designed by Shigeru Miyamoto and Takaya Imamura. In each game, the player controls Fox in his Arwing, with a few exceptions, such as <em>Star Fox Adventures</em> and <em>Star Fox: Assault</em>, where he is controlled on the ground. He is the leader of the Star Fox team and is joined by his wingmates on various missions."
+        ],
+        "games":[
+            {
+                "year":"1993",
+                "description":"<em>Star Fox</em> takes place in a fictional solar system called the Lylat system, which is inhabited by anthropomorphic species such as foxes, frogs, birds, rabbits and apes. It contains the planets Corneria and Venom, representing good and evil, respectively. Andross, an evil scientist, fled to the planet Venom after being banished from Corneria, and declared war on the latter, unleashing an enormous army to wreak havoc on the Lylat System."
+            },
+            {
+                "year":"1997",
+                "description":"<em>Star Fox 64</em> is set on a group of planets in the Lylat system. Ingenious scientist Andross, a native of the fourth planet Corneria, is driven to madness and nearly destroys the planet using biological weapons. General Pepper exiles Andross to the remote planet Venom. Five years later, Pepper detects suspicious activity on Venom. Pepper hires the Star Fox team (including James McCloud, Peppy Hare and Pigma Dengar) to investigate."
+            },
+            {
+                "year":"2002",
+                "description":"<em>Star Fox Adventures</em> is predominately an action-adventure game in which Fox is armed with a mystical staff; traditional space shooting is limited to small segments between chapters.Taking place eight years after the events of Star Fox 64, the main antagonist is an army of dinosaurs called the Sharp Claws, led by General Scales."
+            },
+            {
+                "year":"2005",
+                "description":"With the Aparoids becoming a new threat to the Lylat system, the Star Fox team is tasked with stopping them in <em>Star Fox: Assault</em>. Along with ROB, Peppy now pilots the Great Fox, while Krystal replaces Peppy's role as one of the team's pilots."
+            },
+            {
+                "year":"2006",
+                "description":"The game <em>Star Fox Command</em> follows Fox McCloud attempting to defend the galaxy from aliens known as the Anglar. The game has two types of single-player gameplay including a strategic map and battle mode."
+            },
+            {
+                "year":"2016",
+                "description":"Various elements return from previous games for <em>Star Fox Zero</em>, including Fox's teammates, Falco, Peppy, and Slippy, who can assist the player if they protect them from enemy attacks, as well as Star Wolf team rivals Wolf O'Donnell, Leon Powalski, Pigma Dengar, and Andrew Oikonny. Several level locations have also returned, including Corneria, Zoness, and Titania, while two new locations, Sector Alpha and Area 3, have been added."
+            }
+        ],
+        "link":"https://en.wikipedia.org/wiki/Fox_McCloud",
+        "button_background_color":"#9b7f6f",
+        "page_background_color":"#bfab80"
+    },
+    {
+        "name":"Pikachu",
+        "img_url":"https://poketouch.files.wordpress.com/2017/09/pokemon_ultra_sun_and_ultra_moon_screenshot_of_valley_of_pikachu.jpg?w=648",
+        "img_caption":"The Pikachu has proven to be one of the most memorable Pokemon ever.",
+        "blurb":[
+            "Pikachu are a species of Pokémon, fictional creatures that appear in an assortment of video games, animated television shows and movies, trading card games, and comic books licensed by The Pokémon Company, a Japanese corporation. They are yellow rodent-like creatures with powerful electrical abilities.",
+            "Like other species of Pokémon, Pikachu are often captured and groomed by humans to fight other Pokémon for sport. Pikachu are one of the most well-known varieties of Pokémon, largely because Pikachu is a central character in the <em>Pokémon</em> anime series. Pikachu is regarded as a major character of the Pokémon franchise as well as its mascot, and has become an icon of Japanese pop culture in recent years. It is also seen as one of the major mascots for Nintendo. "
+        ],
+        "games":[
+            {
+                "year":"1996",
+                "description":"Pikachu and the rest of the Pokemon from the Kanto region debuted in <em>Pokemon Red Version</em> and <em>Blue Version</em>."
+            },
+            {
+                "year":"1998",
+                "description":"In <em>Pokémon Yellow Version: Special Pikachu Edition</em>, Pikachu is featured as the only starter Pokemon."
+            },
+            {
+                "year":"1999",
+                "description":"<em>Pokémon Gold Version</em> and <em>Silver Version</em> features the Johto region  inspired by Japan's Kansai and Tōkai regions, with many of the region's temples and more traditional Japanese aesthetics finding their way into Johto."
+            },
+            {
+                "year":"2002",
+                "description":"<em>Pokémon Ruby Version</em> and <em>Sapphire Version</em>take place in the Hoenn region, located some distance from the Kanto and Johto regions featured in previous games. The design of Hoenn was based on the Japanese island and region of Kyushu. Like Kyushu, Hoenn possesses many smaller islands, and part of the region is dominated by sea routes, several of which contain areas where the player can dive underwater."
+            },
+            {
+                "year":"2006",
+                "description":"Unlike other regions, the Sinnoh region of <em>Pokémon Diamond Version</em> and <em>Pearl Version</em> has a 'northern' feel to it because it is the only region with snow-covered routes. Sinnoh is also characterized by its waterways; it has three main lakes (Verity, Acuity, and Valor) that form a triangle. Unlike the Hoenn region, however, which is mostly water routes, only 30 percent of Sinnoh's landscape comprises waterways. Underneath Sinnoh's surface is the Sinnoh Underground, which is a large maze of caves and tunnels."
+            },
+            {
+                "year":"2010",
+                "description":"<em>Pokémon Black Version</em> and <em>White Version</em> are set in the Unova region, a continental mass located far away from the previous regions. Unlike the previous regions which were based on real locations in Japan, Unova is modeled after New York City"
+            },
+            {
+                "year":"2013",
+                "description":"Centered around beauty, the Kalos region in <em>Pokémon X</em> and <em>Y</em> is heavily inspired by France and, to a lesser extent, Europe as a whole. Many locations and landmarks across Kalos have real-world inspirations, including Prism Tower (Eiffel Tower), the Lumiose Art Museum (the Louvre), and the stones outside Geosenge Town (Carnac stones)."
+            },
+            {
+                "year":"2016",
+                "description":"The games <em>Pokémon Sun</em> and <em>Moon</em> take place on the tropical islands of the Alola region, composed entirely of islands. The games take place on the tropical islands of the Alola region, composed entirely of islands. "
+            }
+        ],
+        "link":"https://en.wikipedia.org/wiki/Pikachu",
+        "button_background_color":"#FFD622",
+        "page_background_color":"#e5ef8b"
+    }
+]}

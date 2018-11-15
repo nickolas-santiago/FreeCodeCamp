@@ -1,20 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Link Tribute Page</title>
-    
-</head>
-<body>
+    <title>Smash Bros. Tribute Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        "use strict";
+        $(document).ready(function()
+        {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function()
+            {
+                var myjson = JSON.parse(xhr.responseText);
+                var nav_bar_html = "";
+                for(var hero = 0; hero < myjson.characters.length; hero++)
+                {
+                    nav_bar_html += "<button class='nav_bar_button' style='background-color:red;'>";
+                    nav_bar_html += myjson.characters[hero].name;
+                    nav_bar_html += "</button>";
+                    //$(".nav_bar_button").css("backgroundColor","red");
+                    console.log($("#main").css("background-color"));
+                }
+                $("#nav-bar").html(nav_bar_html);
+                $(".nav_bar_button").each(function()
+                {
+                    $(this).css("background-color",myjson.characters[($(this).index())].button_background_color);
+                });
+                
+                $(".nav_bar_button").click(function()
+                {
+                    var button_index = $(this).index();
+                    var new_title = myjson.characters[button_index].name;
+                    var new_img_src = myjson.characters[button_index].img_url;
+                    var new_img_caption = myjson.characters[button_index].img_caption;
+                    var new_blurb_section = "";
+                    for(var blurb = 0; blurb < myjson.characters[button_index].blurb.length; blurb++)
+                    {
+                        new_blurb_section += "<p id='tribute-info'>" + myjson.characters[button_index].blurb[blurb] + "</p>";
+                    }
+                    var new_game_list = "";
+                    for(var game = 0; game < myjson.characters[button_index].games.length; game++)
+                    {
+                        var list_item = "";
+                        list_item += "<li><b>" + myjson.characters[button_index].games[game].year;
+                        list_item += "</b> " + myjson.characters[button_index].games[game].description + "</li>"
+                        new_game_list += list_item;
+                    }
+                    var new_link = myjson.characters[button_index].link;
+                    $("#title").text(new_title)
+                    $("#image").attr("src",new_img_src);
+                    $("#img-caption").text(new_img_caption);
+                    $("#info-section").html(new_blurb_section);
+                    $("#game-list").html(new_game_list);
+                    $("#tribute-link").attr("href",new_link);
+                    $('html, body').css("background-color",myjson.characters[button_index].page_background_color);
+                });
+            }
+            var url = "char-list.json";
+            xhr.open('GET', url, true);
+            xhr.setRequestHeader("If-Modified-Since", "Mon, 3 Apr 2017 00:00:00 EST");
+            xhr.send();
+        });
+    </script>
     <style>
         body
         {
             background-color: #739e82;
             font-family: sans-serif;
         }
+        #nav-bar
+        {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .nav_bar_button
+        {
+            width: 12.5%;
+            padding: 8px 0;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            height: 39.5px;
+            overflow: hidden;
+        }
+        .nav_bar_button:hover
+        {
+            cursor: pointer;
+        }
         #main
         {
             width: 85%;
-            margin: 0 auto;
+            margin: 20px auto 0 auto;
             padding: 15px 30px;
             color: #0c0c0c;
             background-color: #e3e3e3;;
@@ -38,7 +115,7 @@
         {
             margin: 15px auto 4px auto;
         }
-        #image, h1, p
+        #image
         {
             margin: auto;
         }
@@ -49,6 +126,7 @@
         }
         h1
         {
+            margin: 20px auto 0 auto;
             font-size: 40px;
         }
         h2
@@ -69,13 +147,17 @@
             margin: 3px 5% 8px 3%;
         }
     </style>
+</head>
+<body>
     <div id="main">
+        <div id="nav-bar">
+        </div>
         <h1 id="title">Link</h1>
         <div id="img-div">
             <img id="image" alt="this is an image" src="https://s.aolcdn.com/hss/storage/midas/6259c9a8469c47fd54d3796c672cee2d/206540985/linkfeatnew.jpg"/>
             <p id="img-caption">Link appears riding his bike along a lush track.</p>
         </div>
-        <div class="a-section">
+        <div class="a-section" id="info-section">
             <p id="tribute-info">Link is the main playable character of Nintendo's video game series <em>The Legend of Zelda</em>. He appears in several incarnations over the course of the games,
                 and also features in other Nintendo media, including merchandising, comic books, and a cartoon series. He is one of Nintendo's main icons and one of the most
                 well-known and popular characters in video game history.</p>
@@ -86,7 +168,7 @@
         </div>
         <div class="a-section">
             <h2>Here is a list of the hero's adventures:</h2>
-            <ul>
+            <ul id="game-list">
                 <li><b>1986</b> Our hero makes his debut in <em>The Legend of Zelda</em> to resuce the princess from the evil Ganon, who has stolen the Triforce of Power.</li>
                 <li><b>1987</b> Several years after his debut, our hero returns in <em>Zelda II: The Adventure of Link</em> to defeat his evil shadow clone and claim the Triforce of Courage.</li>
                 <li><b>1991</b> <em>The Legend of Zelda: A Link to the Past</em> serves as a prequel showing how the evil Ganon was released.</li>
@@ -100,8 +182,8 @@
                 <li><b>2002</b> In <em>The Legend of Zelda: Four Swords</em>, Link is split into four! The Links must cooperate to overcome obstacles, collect keys, and storm Vaati's Palace so they
                     can rescue Zelda and reseal the Wind Mage.</li>
                 <li><b>2002</b>  Link travels the Great Sea in <em>The Legend of Zelda: The Wind Waker</em> to rescue his sister and defeat the Helmaroc King; his quest intertwining with that of
-                    The King of Red Lions, who, after many trials, entitles Link as the "Hero of Winds".</li>
-                <li><b>2004</b> <em>The Legend of Zelda: The Minish Cap</em> features Link as a young boy living with his grandfather, the Master Smith of Hyrule. It is a prequel to <em>Four Swords</em></li>
+                    The King of Red Lions, who, after many trials, entitles Link as the 'Hero of Winds'.</li>
+                <li><b>2004</b> <em>The Legend of Zelda: The Minish Cap</em> features Link as a young boy living with his grandfather, the Master Smith of Hyrule. It is a prequel to <em>Four Swords</em>.</li>
                 <li><b>2006</b> During his journey to rescue his friends in <em>The Legend of Zelda: Twilight Princess</em>, Link discovers that the entire kingdom of Hyrule has been covered by a dark
                     twilight, in which most people are reduced to nothing more than spirits. However, Link is transformed into a wolf upon entering the twilight. While in this form, he is aided by Midna,
                     an imp-like creature, and eventually cleanses the land from the twilight.</li>
@@ -110,10 +192,10 @@
                     once ravaged the land that would become New Hyrule in <em>The Legend of Zelda: Spirit Tracks</em>.</li>
                 <li><b>2011</b> During his journey in <em>The Legend of Zelda: Skyward Sword</em>, Link imbues the Goddess Sword with three sacred flames, which result in it being reforged into the Master Sword.</li>
                 <li><b>2013</b> In <em>The Legend of Zelda: A Link Between Worlds</em>, Link is a blacksmith's apprentice who is forced to rescue the Seven Sages, descendants of the original Sages who sealed the
-                    Sacred Realm years ago, after Yuga, a sorcerer who has the ability to "merge" into walls and turn people into paintings, brings them to another world, the Kingdom of Lorule, in the form of
+                    Sacred Realm years ago, after Yuga, a sorcerer who has the ability to 'merge' into walls and turn people into paintings, brings them to another world, the Kingdom of Lorule, in the form of
                     paintings to revive Ganon.</li>
-                <li><b>2017</b> <em>The Legend of Zelda: Breath of the Wild</em> is set thousands of years after Ocarina of Time, though it is not specified as to whether it occurs in the "Adult Link Timeline",
-                    "Child Link Timeline", or "Fallen Hero Timeline". Link awakens after a century in a stasis pod, and comes to discover that an evil force called the Calamity Ganon has been trapped in Hyrule
+                <li><b>2017</b> <em>The Legend of Zelda: Breath of the Wild</em> is set thousands of years after Ocarina of Time, though it is not specified as to whether it occurs in the 'Adult Link Timeline',
+                    'Child Link Timeline', or 'Fallen Hero Timeline'. Link awakens after a century in a stasis pod, and comes to discover that an evil force called the Calamity Ganon has been trapped in Hyrule
                     Castle for as long as he had been in stasis.</li>
             </ul>
         </div>
