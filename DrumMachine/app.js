@@ -15,7 +15,7 @@ class App extends React.Component
                 {id: "sound-x", buttontext: "X", soundsrc: "8.mp3"},
                 {id: "sound-c", buttontext: "C", soundsrc: "level-complete.mp3"}
             ], 
-            display: "",
+            display: "----",
             currentsound: ""
         }
         this.playsound = this.playsound.bind(this);
@@ -58,7 +58,9 @@ class App extends React.Component
                 <div id="display">
                     <h2>{this.state.display}</h2>
                 </div>
-                {clip_buttons}
+                <div id="drum-pad-buttons">
+                    {clip_buttons}
+                </div>
             </div>
         );
     }

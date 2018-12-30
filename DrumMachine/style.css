@@ -1,0 +1,37 @@
+#drum-machine
+{
+    width: 750px;
+    margin: 0 auto;
+    background-color: #DFDFDF;
+    border: 3px solid #2D2D2D;
+}
+h2
+{
+    text-align: center;
+}
+#display
+{
+    width: 30%;
+    height: 30px;
+    margin: 0 0 0 35%;
+    background-color: white;
+}
+#drum-pad-buttons
+{
+    width: 95%;
+    margin-left: 2.50%;
+    margin: 20px 0 20px 2.50%;
+    padding-top: 25px;
+    display: inline-block;
+    background-color: #2C2C2B;
+    border: 2px solid #2D2D2D;
+}
+.drum-pad
+{
+    width: 29%;
+    height: 65px;
+    margin-left: 3.25%;
+    margin-bottom: 25px;
+    float: left;
+    background-color: #F8F8F8;
+}
