@@ -1,18 +1,22 @@
 const Calc_Buttons = [
-                {button_id: "nine", button_text: "9"},
-                {button_id: "eight", button_text: "8"},
-                {button_id: "seven", button_text: "7"},
-                {button_id: "six", button_text: "6"},
-                {button_id: "five", button_text: "5"},
-                {button_id: "four", button_text: "4"},
-                {button_id: "three", button_text: "3"},
-                {button_id: "two", button_text: "2"},
-                {button_id: "one", button_text: "1"},
-                {button_id: "zero", button_text: "0"},
+                {button_id: "clear", button_text: "A/C"},
                 {button_id: "add", button_text: "+"},
+                {button_id: "seven", button_text: "7"},
+                {button_id: "eight", button_text: "8"},
+                {button_id: "nine", button_text: "9"},
                 {button_id: "subtract", button_text: "-"},
+                {button_id: "four", button_text: "4"},
+                {button_id: "five", button_text: "5"},
+                {button_id: "six", button_text: "6"},
                 {button_id: "multiply", button_text: "X"},
-                {button_id: "divide", button_text: "/"}
+                {button_id: "one", button_text: "1"},
+                {button_id: "two", button_text: "2"},
+                {button_id: "three", button_text: "3"},
+                {button_id: "divide", button_text: "/"},
+                {button_id: "pos_or_neg", button_text: "+/-"},
+                {button_id: "zero", button_text: "0"},
+                {button_id: "decimal", button_text: "."},
+                {button_id: "equals", button_text: "="}
             ];
 var start_new_evaluation = true;
 class App extends React.Component
@@ -31,6 +35,7 @@ class App extends React.Component
     }
     clear()
     {
+        start_new_evaluation = true;
         this.setState({
             current_display: 0,
             current_function: []
@@ -38,116 +43,170 @@ class App extends React.Component
     }
     upDateDisplay(button_id, button_value)
     {
-        if(isNaN(button_value) == true)
+        if(button_id == "clear")
         {
-            if(start_new_evaluation == true)
+            this.clear();
+        }
+        else if(button_id == "decimal")
+        {
+            this.addDecimal();
+        }
+        else if(button_id == "equals")
+        {
+            this.evaluateFunction();
+        }
+        else if(button_id == "pos_or_neg")
+        {
+            var newdisplay = this.state.current_display * (-1);
+            this.setState({
+                current_display: newdisplay
+            });
+        }
+        else
+        {
+            if(isNaN(button_value) == true)
             {
-                var arr = [];
-                arr.push(this.state.current_display);
-                if(button_id == "multiply")
+                if(start_new_evaluation == true)
                 {
-                    arr.push("*");
+                    var arr = [];
+                    arr.push(this.state.current_display);
+                    if(button_id == "multiply")
+                    {
+                        arr.push("*");
+                    }
+                    else
+                    {
+                        arr.push(button_value);
+                    }
+                    this.setState({
+                        current_display: 0,
+                        current_function: arr
+                    });
+                    start_new_evaluation= false;
                 }
                 else
                 {
-                    arr.push(button_value);
+                    var arr = [...this.state.current_function];
+                    if(this.state.current_display === 0)
+                    {
+                        if(/(\+)|(\-)|(\*)|(\/)/.test(this.state.current_function[(this.state.current_function.length - 1)]) == true)
+                        {
+                            if(button_id == "multiply")
+                            {
+                                arr.splice((arr.length - 1), 1, "*");
+                            }
+                            else
+                            {
+                                arr.splice((arr.length - 1), 1, button_value);
+                            }
+                            this.setState({
+                                current_function: arr
+                            });
+                        }
+                    }
+                    else
+                    {
+                        if(this.state.current_function.length == 0)
+                        {
+                            arr.push(this.state.current_display);
+                            if(button_id == "multiply")
+                            {
+                                arr.push("*");
+                            }
+                            else
+                            {
+                                arr.push(button_value);
+                            }
+                            this.setState({
+                                current_display: 0,
+                                current_function: arr
+                            });
+                        }
+                        else
+                        {
+                            arr.push(this.state.current_display);
+                            if(button_id == "multiply")
+                            {
+                                arr.push("*");
+                            }
+                            else
+                            {
+                                arr.push(button_value);
+                            }
+                            this.setState({
+                                current_display: 0,
+                                current_function: arr
+                            });
+                        }
+                    }
                 }
-                this.setState({
-                    current_display: 0,
-                    current_function: arr
-                });
-                start_new_evaluation= false;
             }
             else
             {
-                var arr = [...this.state.current_function];
-                if(this.state.current_display === 0)
+                if(start_new_evaluation == true)
                 {
-                    if(/(\+)|(\-)|(\*)|(\/)/.test(this.state.current_function[(this.state.current_function.length - 1)]) == true)
-                    {
-                        if(button_id == "multiply")
-                        {
-                            arr.splice((arr.length - 1), 1, "*");
-                        }
-                        else
-                        {
-                            arr.splice((arr.length - 1), 1, button_value);
-                        }
-                        this.setState({
-                            current_function: arr
-                        });
-                    }
+                    start_new_evaluation = false;
+                    var newdisplay = "" + button_value;
+                    this.setState({
+                        current_display: newdisplay,
+                        current_function: []
+                    });
                 }
                 else
                 {
-                    if(this.state.current_function.length == 0)
+                    if(this.state.current_display === 0)
                     {
-                        arr.push(this.state.current_display);
-                        if(button_id == "multiply")
-                        {
-                            arr.push("*");
-                        }
-                        else
-                        {
-                            arr.push(button_value);
-                        }
+                        var newdisplay = "" + button_value;
                         this.setState({
-                            current_display: 0,
-                            current_function: arr
+                            current_display: newdisplay
                         });
                     }
                     else
                     {
-                        arr.push(this.state.current_display);
-                        if(button_id == "multiply")
+                        if(this.state.current_display === "0")
                         {
-                            arr.push("*");
+                            if(button_value === "0")
+                            {
+                                return;
+                            }
+                            else
+                            {
+                                var newdisplay = "" + button_value;
+                                this.setState({
+                                    current_display: newdisplay
+                                });
+                                return;
+                            }
                         }
-                        else
-                        {
-                            arr.push(button_value);
-                        }
+                        var newdisplay = "" + this.state.current_display + button_value;
                         this.setState({
-                            current_display: 0,
-                            current_function: arr
-                        });
+                            current_display: newdisplay
+                        })
                     }
                 }
             }
         }
-        else
-        {
-            if(start_new_evaluation == true)
-            {
-                this.clear();
-            }
-            start_new_evaluation = false;
-            if(this.state.current_display === 0)
-            {
-                if(button_value == 0)
-                {
-                    return;
-                }
-                var newdisplay = "" + button_value;
-                this.setState({
-                    current_display: newdisplay
-                });
-                return;
-            }
-            var newdisplay = "" + this.state.current_display + button_value;
-            this.setState({
-                current_display: newdisplay
-            });
-        }
     }
     addDecimal()
     {
-        if(this.state.current_display.toString().indexOf(".") < 0)
+        if(start_new_evaluation == true)
         {
-            var newdisplay = ("" + this.state.current_display + ".");
+            start_new_evaluation = false;
+            var newdisplay = ("0.");
             this.setState({
-                current_display: newdisplay
+                current_display: newdisplay,
+                current_function: []
             });
+        }
+        else
+        {
+            if(this.state.current_display.toString().indexOf(".") < 0)
+            {
+                var newdisplay = ("" + this.state.current_display + ".");
+                this.setState({
+                    current_display: newdisplay
+                });
+            }
         }
     }
     evaluateFunction()
@@ -183,15 +242,6 @@ class App extends React.Component
                 </div>
                 <div id="number_buttons">
                     {calc_buttons}
-                </div>
-                <div id="clear" onClick={this.clear} className="button">
-                    <p>CLEAR</p>
-                </div>
-                <div id="decimal" onClick={this.addDecimal} className="button">
-                    <p>.</p>
-                </div>
-                <div id="equals" onClick={this.evaluateFunction} className="button">
-                    <p>=</p>
                 </div>
             </div>
         );
