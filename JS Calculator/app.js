@@ -1,5 +1,4 @@
 const Calc_Buttons = [
-                {button_id: "clear", button_text: "A/C"},
                 {button_id: "add", button_text: "+"},
                 {button_id: "seven", button_text: "7"},
                 {button_id: "eight", button_text: "8"},
@@ -230,17 +229,21 @@ class App extends React.Component
                 <NumberButton key={button.button_id} id={button.button_id} buttontext={button.button_text} updateisplay={self.upDateDisplay}/>
             );
         });
+        //           {button_id: , button_text: "A/C"},
         return(
             <div id="main">
                 <div id="display_section">
-                    <div id="current_function">
+                    <div id="current_function" className="a_display">
                         <p>{this.state.current_function}</p>
                     </div>
-                    <div id="display">
+                    <div id="display" className="a_display">
                         <p>{this.state.current_display}</p>
                     </div>
                 </div>
-                <div id="number_buttons">
+                <div id="buttons_section">
+                    <div className="button" id="clear_button">
+                        <p  id="clear" onClick={this.clear} className="button_text">CLEAR</p>
+                    </div>
                     {calc_buttons}
                 </div>
             </div>
@@ -261,8 +264,8 @@ class NumberButton extends React.Component
     render()
     {
         return(
-            <div id={this.props.id} onClick={this.clickHandler} className="button">
-                <p>{this.props.buttontext}</p>
+            <div className="button">
+                <p  id={this.props.id} onClick={this.clickHandler} className="button_text">{this.props.buttontext}</p>
             </div>
         );
     }

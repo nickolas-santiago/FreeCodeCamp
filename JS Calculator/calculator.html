@@ -6,6 +6,71 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
     <script type="text/jsx" src="app.js"></script>
+    <style rel="stylesheet" type="text/css">
+        #main
+        {
+            width: 450px;
+            margin: 75px auto;
+            border: 3px solid black;
+            font-family: sans-serif;
+            background-color: #3D3D3D;
+        }
+        .a_display
+        {
+            width: 95%;
+            margin: 5px auto 10px auto;
+            background-color: white;
+            text-align: right;
+        }
+        #current_function
+        {
+            height: 19px;
+        }
+        #current_function p
+        {
+            border: 1px solid black;
+            line-height: 19px;
+            font-size: 16.5px;
+        }
+        #display p
+        {
+            border: 3.5px solid black;
+            line-height: 28px;
+            font-size: 25px;
+            font-weight: 700;
+        }
+        .a_display p
+        {
+            margin: 0;
+            padding: 0 5.5px;
+        }
+        
+        #buttons_section
+        {
+            display: flow-root;
+        }
+        .button
+        {
+            width: 25%;
+            float: left;
+        }
+        #clear_button
+        {
+            width: 75%;
+        }
+        .button_text
+        {
+            margin: 5px;
+            border: 1px solid black;
+            border-radius: 5%;
+            padding: 10px 0;
+            line-height: 25px;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
     <div id="app"></div>
