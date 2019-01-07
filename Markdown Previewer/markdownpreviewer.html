@@ -7,6 +7,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="text/jsx" src="app.js"></script>
+    <style rel="stylesheet" type="text/css">
+        body
+        {
+            margin: 0;
+        }
+        #main
+        {
+            width: 850px;
+            margin: 85px auto 0 auto;
+            display: flex;
+            background-color: #727272;
+        }
+        .a_section
+        {
+            width: 50%;
+            padding-bottom: 17px;
+            float: left;
+        }
+        .section_header
+        {
+            margin: 15px 0;
+            font-weight: 800;
+            text-decoration: underline;
+            text-align: center;
+        }
+        #editing_section
+        {
+            border-right: 1px solid black;
+        }
+        .content
+        {
+            width: 94%;
+            height: 650px;
+            margin: 0 2.5%;
+            border: 2px solid black;
+            overflow-y: scroll;
+            background-color: white;
+        }
+        #editor
+        {
+            resize: none;
+        }
     </style>
 </head>
 <body>

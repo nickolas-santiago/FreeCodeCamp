@@ -36,8 +36,14 @@ class App extends React.Component
     {
         return(
             <div id="main">
-                <textarea id="editor" onChange={this.changePreview} value={this.state.preview_data}></textarea>
-                <div id="preview" dangerouslySetInnerHTML={{__html: marked(this.state.preview_data)}}></div>
+                <div id="editing_section" className="a_section">
+                    <h2 className="section_header">Markdown Input</h2>
+                    <textarea id="editor" className="content" onChange={this.changePreview} value={this.state.preview_data}></textarea>
+                </div>
+                <div id="previewer_section" className="a_section">
+                    <h2 className="section_header">Previewer</h2>
+                    <div id="preview" className="content" dangerouslySetInnerHTML={{__html: marked(this.state.preview_data)}}></div>
+                </div>
             </div>
         );
     }
