@@ -11,14 +11,11 @@ class App extends React.Component
             time_left: (25 * 60),
             timer_label: ""
         }
+        this.clickHandler = this.clickHandler.bind(this);
         this.reset = this.reset.bind(this);
         this.startstop = this.startstop.bind(this);
         this.beginTimerInterval = this.beginTimerInterval.bind(this);
         this.clearTimerInterval = this.clearTimerInterval.bind(this);
-        this.breakincrementfunc = this.breakincrementfunc.bind(this);
-        this.breakdecrementfunc = this.breakdecrementfunc.bind(this);
-        this.sessionincrementfunc = this.sessionincrementfunc.bind(this);
-        this.sessiondecrementfunc = this.sessiondecrementfunc.bind(this);
     }
     componentDidMount()
     {
@@ -26,72 +23,48 @@ class App extends React.Component
             timer_label: "Session"
         });
     }
-    breakincrementfunc()
+    clickHandler(button_id, button_parentnode)
     {
-        if(this.state.breaklength < 60 && this.state.running == false)
+        if(this.state.running == false)
         {
-            var newbreaklength = this.state.breaklength + 1;
-            this.setState({
-                breaklength: newbreaklength
-            });
-            if(this.state.timer_label == "Break")
+            var changeState = function(self, changing_state, new_length, current_label, time_length_state)
             {
-                var new_time_left = (newbreaklength * 60);
-                this.setState({
-                    time_left: new_time_left
+                self.setState({
+                    [changing_state]: new_length
                 });
+                if(self.state.timer_label == current_label)
+                {
+                    var new_time_left = (new_length * 60);
+                    self.setState({
+                        [time_length_state]: new_time_left
+                    });
+                }
             }
-        }
-    }
-    breakdecrementfunc()
-    {
-        if(this.state.breaklength > 1 && this.state.running == false)
-        {
-            var newbreaklength = this.state.breaklength - 1;
-            this.setState({
-                breaklength: newbreaklength
-            });
-            if(this.state.timer_label == "Break")
+            if(button_parentnode == "break-section")
             {
-                var new_time_left = (newbreaklength * 60);
-                this.setState({
-                    time_left: new_time_left
-                });
+                if(button_id == "break-increment" && this.state.breaklength < 60)
+                {
+                    var newbreaklength = this.state.breaklength + 1;
+                    changeState(this, "breaklength", newbreaklength, "Break", "time_left");
+                }
+                if(button_id == "break-decrement" && this.state.breaklength > 1)
+                {
+                    var newbreaklength = this.state.breaklength - 1;
+                    changeState(this, "breaklength", newbreaklength, "Break", "time_left");
+                }
             }
-        }
-    }
-    sessionincrementfunc()
-    {
-        if(this.state.sessionlength < 60 && this.state.running == false)
-        {
-            var newsessionlength = this.state.sessionlength + 1;
-            this.setState({
-                sessionlength: newsessionlength
-            });
-            if(this.state.timer_label == "Session")
+            if(button_parentnode == "session-section")
             {
-                var new_time_left = (newsessionlength * 60);
-                this.setState({
-                    time_left: new_time_left
-                });
-            }
-        }
-    }
-    sessiondecrementfunc()
-    {
-        if(this.state.sessionlength > 1 && this.state.running == false)
-        {
-            var newsessionlength = this.state.sessionlength - 1;
-            var new_time_left = (newsessionlength * 60);
-            this.setState({
-                sessionlength: newsessionlength
-            });
-            if(this.state.timer_label == "Session")
-            {
-                var new_time_left = (newsessionlength * 60);
-                this.setState({
-                    time_left: new_time_left
-                });
+                if(button_id == "session-increment" && this.state.sessionlength < 60)
+                {
+                    var newsessionlength = this.state.sessionlength + 1;
+                    changeState(this, "sessionlength", newsessionlength, "Session", "time_left");
+                }
+                if(button_id == "session-decrement" && this.state.sessionlength > 1)
+                {
+                    var newsessionlength = this.state.sessionlength - 1;
+                    changeState(this, "sessionlength", newsessionlength, "Session", "time_left");
+                }
             }
         }
     }
@@ -175,8 +148,8 @@ class App extends React.Component
         var timeleft = (this.state.time_left);
         return(
             <div>
-                <BreakComponent running={this.state.running} breaklength={this.state.breaklength} breakincrementfunc={this.breakincrementfunc} breakdecrementfunc={this.breakdecrementfunc} />
-                <SessionComponent running={this.state.running} sessionlength={this.state.sessionlength} sessionincrementfunc={this.sessionincrementfunc} sessiondecrementfunc={this.sessiondecrementfunc} />
+                <SectionLengthComponent section_id="break-section" section_label_id="break-label" section_label="Break Length" incrementor_id="break-increment" decrementor_id="break-decrement" section_length_id="break-length" section_length={this.state.breaklength} clickHandler={this.clickHandler}/>
+                <SectionLengthComponent section_id="session-section" section_label_id="session-label" section_label="Session Length" incrementor_id="session-increment" decrementor_id="session-decrement" section_length_id="session-length" section_length={this.state.sessionlength} clickHandler={this.clickHandler}/>
                 <Timer time_left={timeleft} timer_label={this.state.timer_label}/>
                 <button id="start_stop" onClick={this.startstop}>Start/Stop</button>
                 <button id="reset" onClick={this.reset}>Reset</button>
@@ -185,57 +158,35 @@ class App extends React.Component
         );
     }
 };
-class BreakComponent extends React.Component
+class SectionLengthComponent extends React.Component
 {
     constructor(props)
     {
         super(props);
         this.state = {
-            breaklength: this.props.breaklength
+            section_time_length: ""
         };
+        this.clickHandler = this.clickHandler.bind(this);
     }
     componentWillReceiveProps(nextProps)
     {
         this.setState({
-            breaklength: nextProps.breaklength
+            section_time_length: nextProps.section_time_length
         });
+    }
+    clickHandler(e)
+    {
+        var target_parentnode = document.getElementById(e.target.id).parentNode.id;
+        this.props.clickHandler(e.target.id, target_parentnode);
     }
     render()
     {
         return(
-            <div>
-                <h1 id="break-label">Break Length</h1>
-                <p id="break-increment" onClick={this.props.breakincrementfunc}>break-increment</p>
-                <p id="break-decrement" onClick={this.props.breakdecrementfunc}>break-decrement</p>
-                <h3 id="break-length">{this.state.breaklength}</h3>
-            </div>
-        );
-    }
-}
-class SessionComponent extends React.Component
-{
-    constructor(props)
-    {
-        super(props);
-        this.state = {
-            sessionlength: this.props.sessionlength
-        };
-    }
-    componentWillReceiveProps(nextProps)
-    {
-        this.setState(
-        {
-            sessionlength: nextProps.sessionlength
-        });
-    }
-    render()
-    {
-        return(
-            <div>
-                <h1 id="session-label">Session Length</h1>
-                <p id="session-increment" onClick={this.props.sessionincrementfunc}>session-increment</p>
-                <p id="session-decrement" onClick={this.props.sessiondecrementfunc}>session-decrement</p>
-                <h3 id="session-length">{this.state.sessionlength}</h3>
+            <div id={this.props.section_id} className="a_section">
+                <h1 id={this.props.section_label_id}>{this.props.section_label}</h1>
+                <i className="fa fa-arrow-up" aria-hidden="true" id={this.props.incrementor_id} onClick={this.clickHandler}></i>
+                <i className="fa fa-arrow-down" aria-hidden="true" id={this.props.decrementor_id} onClick={this.clickHandler}></i>
+                <h3 id={this.props.section_length_id}>{this.props.section_length}</h3>
             </div>
         );
     }
