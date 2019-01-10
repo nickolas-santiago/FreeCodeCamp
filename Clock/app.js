@@ -1,4 +1,11 @@
 var my_timer;
+var beep_srcs = [
+    {sound_label: "Default Beep", src: "https://onlineclock.net/audio/options/default.mp3"},
+    {sound_label: "Rooster", src: "https://onlineclock.net/audio/options/rooster.mp3"},
+    {sound_label: "Heavy Metal Solo", src: "https://onlineclock.net/audio/options/heavy-metal.mp3"},
+    {sound_label: "Calming Harp", src: "https://onlineclock.net/audio/options/harp-strumming.mp3"},
+    {sound_label: "Zombie Moan", src: "https://onlineclock.net/audio/options/zombie.mp3"}
+];
 class App extends React.Component
 {
     constructor(props)
@@ -9,19 +16,15 @@ class App extends React.Component
             sessionlength: 25,
             breaklength: 5,
             time_left: (25 * 60),
-            timer_label: ""
+            timer_label: "Session",
+            selectedbeep: 0
         }
         this.clickHandler = this.clickHandler.bind(this);
         this.reset = this.reset.bind(this);
         this.startstop = this.startstop.bind(this);
         this.beginTimerInterval = this.beginTimerInterval.bind(this);
         this.clearTimerInterval = this.clearTimerInterval.bind(this);
-    }
-    componentDidMount()
-    {
-        this.setState({
-            timer_label: "Session"
-        });
+        this.changeBeepSrc = this.changeBeepSrc.bind(this);
     }
     clickHandler(button_id, button_parentnode)
     {
@@ -109,32 +112,32 @@ class App extends React.Component
         var self = this;
         my_timer = setInterval(function()
         {
-            var iatemylife = self.state.time_left - 1;
-            if(iatemylife < 0)
+            var new_time_period_length = self.state.time_left - 1;
+            if(new_time_period_length < 0)
             {
                 document.getElementById("beep").play();
+                var setNewTimePeriod = function(self_, period_length, time_left_state, timer_label_state, new_timer_label)
+                {
+                    new_time_period_length = (period_length * 60);
+                    self_.setState({
+                        [time_left_state]: new_time_period_length,
+                        [timer_label_state]: new_timer_label
+                    });
+                }
                 if(self.state.timer_label == "Session")
                 {
-                    iatemylife = (self.state.breaklength * 60);
-                    self.setState({
-                        time_left: iatemylife,
-                        timer_label: "Break"
-                    });
+                    setNewTimePeriod(self, self.state.breaklength, "time_left", "timer_label", "Break");
                 }
                 else if(self.state.timer_label == "Break")
                 {
-                    iatemylife = (self.state.sessionlength * 60);
-                    self.setState({
-                        time_left: iatemylife,
-                        timer_label: "Session"
-                    });
+                    setNewTimePeriod(self, self.state.sessionlength, "time_left", "timer_label", "Session");
                 }
                 return;
             }
             else
             {
                 self.setState({
-                    time_left: iatemylife
+                    time_left: new_time_period_length
                 });
             }
         },1000);
@@ -143,9 +146,28 @@ class App extends React.Component
     {
         clearInterval(my_timer);
     }
+    changeBeepSrc(e)
+    {
+        var new_beep = e.target.value;
+        this.setState({
+            selectedbeep: new_beep
+        });
+    }
     render()
     {
         var timeleft = (this.state.time_left);
+        var self = this;
+        var beep_opt = beep_srcs.map(function(beep, i)
+        {
+            return(
+                <div>
+                    <label>
+                        {beep.sound_label}
+                        <input type="radio" name="beep_options" value={i} onChange={self.changeBeepSrc} className="form-check-input" checked={self.state.selectedbeep == i}/>
+                    </label>
+                </div>
+            ); 
+        });
         return(
             <div>
                 <SectionLengthComponent section_id="break-section" section_label_id="break-label" section_label="Break Length" incrementor_id="break-increment" decrementor_id="break-decrement" section_length_id="break-length" section_length={this.state.breaklength} clickHandler={this.clickHandler}/>
@@ -153,7 +175,10 @@ class App extends React.Component
                 <Timer time_left={timeleft} timer_label={this.state.timer_label}/>
                 <button id="start_stop" onClick={this.startstop}>Start/Stop</button>
                 <button id="reset" onClick={this.reset}>Reset</button>
-                <audio className="clip" id="beep" src="https://onlineclock.net/audio/options/zombie.mp3"></audio>
+                <div>
+                    {beep_opt}
+                </div>
+                <audio className="clip" id="beep" src={beep_srcs[this.state.selectedbeep].src}></audio>
             </div>
         );
     }
@@ -176,17 +201,18 @@ class SectionLengthComponent extends React.Component
     }
     clickHandler(e)
     {
-        var target_parentnode = document.getElementById(e.target.id).parentNode.id;
-        this.props.clickHandler(e.target.id, target_parentnode);
+        this.props.clickHandler(e.target.id, this.props.section_id);
     }
     render()
     {
         return(
             <div id={this.props.section_id} className="a_section">
                 <h1 id={this.props.section_label_id}>{this.props.section_label}</h1>
-                <i className="fa fa-arrow-up" aria-hidden="true" id={this.props.incrementor_id} onClick={this.clickHandler}></i>
-                <i className="fa fa-arrow-down" aria-hidden="true" id={this.props.decrementor_id} onClick={this.clickHandler}></i>
-                <h3 id={this.props.section_length_id}>{this.props.section_length}</h3>
+                <div className="a_section_content">
+                    <i className="fa fa-arrow-up section_element" aria-hidden="true" id={this.props.incrementor_id} onClick={this.clickHandler}></i>
+                    <h3 id={this.props.section_length_id} className="section_element">{this.props.section_length}</h3>
+                    <i className="fa fa-arrow-down section_element" aria-hidden="true" id={this.props.decrementor_id} onClick={this.clickHandler}></i>
+                </div>
             </div>
         );
     }
