@@ -160,25 +160,28 @@ class App extends React.Component
         var beep_opt = beep_srcs.map(function(beep, i)
         {
             return(
-                <div>
-                    <label>
-                        {beep.sound_label}
-                        <input type="radio" name="beep_options" value={i} onChange={self.changeBeepSrc} className="form-check-input" checked={self.state.selectedbeep == i}/>
-                    </label>
-                </div>
+                <label>
+                    {beep.sound_label}
+                    <input type="radio" name="beep_options" value={i} onChange={self.changeBeepSrc} className="form-check-input" checked={self.state.selectedbeep == i}/>
+                </label>
             ); 
         });
         return(
-            <div>
+            <div id="my_app">
+            <div id="time_period_length_sections">
                 <SectionLengthComponent section_id="break-section" section_label_id="break-label" section_label="Break Length" incrementor_id="break-increment" decrementor_id="break-decrement" section_length_id="break-length" section_length={this.state.breaklength} clickHandler={this.clickHandler}/>
                 <SectionLengthComponent section_id="session-section" section_label_id="session-label" section_label="Session Length" incrementor_id="session-increment" decrementor_id="session-decrement" section_length_id="session-length" section_length={this.state.sessionlength} clickHandler={this.clickHandler}/>
-                <Timer time_left={timeleft} timer_label={this.state.timer_label}/>
-                <button id="start_stop" onClick={this.startstop}>Start/Stop</button>
+            </div>             
+            <Timer time_left={timeleft} timer_label={this.state.timer_label}/>
+            <div id="buttons">
+                <button id="start_stop" classonClick={this.startstop}>Start/Stop</button>
                 <button id="reset" onClick={this.reset}>Reset</button>
-                <div>
-                    {beep_opt}
-                </div>
-                <audio className="clip" id="beep" src={beep_srcs[this.state.selectedbeep].src}></audio>
+            </div>
+            <div id="sound_options_section">
+                <p id="sound_options_label"><u>Sound Options:</u></p>
+                {beep_opt}
+            </div>
+            <audio className="clip" id="beep" src={beep_srcs[this.state.selectedbeep].src}></audio>
             </div>
         );
     }
@@ -207,10 +210,10 @@ class SectionLengthComponent extends React.Component
     {
         return(
             <div id={this.props.section_id} className="a_section">
-                <h1 id={this.props.section_label_id}>{this.props.section_label}</h1>
+                <h2 id={this.props.section_label_id} className="section_label">{this.props.section_label}</h2>
                 <div className="a_section_content">
                     <i className="fa fa-arrow-up section_element" aria-hidden="true" id={this.props.incrementor_id} onClick={this.clickHandler}></i>
-                    <h3 id={this.props.section_length_id} className="section_element">{this.props.section_length}</h3>
+                    <p id={this.props.section_length_id} className="section_element">{this.props.section_length}</p>
                     <i className="fa fa-arrow-down section_element" aria-hidden="true" id={this.props.decrementor_id} onClick={this.clickHandler}></i>
                 </div>
             </div>
@@ -236,8 +239,8 @@ class Timer extends React.Component
             time_left_seconds = "0" + time_left_seconds;
         }
         return(
-            <div>
-                <h2 id="timer-label">{this.props.timer_label}</h2>
+            <div id="timer_section">
+                <h1 id="timer-label" className="section_label">{this.props.timer_label}</h1>
                 <h1 id="time-left">{time_left_minutes}:{time_left_seconds}</h1>
             </div>
         );

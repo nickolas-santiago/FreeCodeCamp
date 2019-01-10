@@ -1,0 +1,89 @@
+html, body
+{
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+}
+body
+{
+    background-color: rgb(115,115,115);
+}
+#app
+{
+    width: 875px;
+    margin: 0 auto;
+    display: flex;
+}
+#my_app
+{
+    width: 100%;
+    margin: 115px auto;
+    border: 6px solid rgb(255, 179, 255);
+    padding: 13px 0;
+}
+
+/*Session and Break Length sections*/
+#time_period_length_sections
+{
+    display: flex;
+}
+.a_section
+{
+    width: 40%;
+    margin: 0 auto;
+    border: 2.5px dashed white;
+    padding: 10px 0;
+}
+.a_section_content
+{
+    margin: 10px auto 0 auto;
+    display: table;
+}
+.section_element
+{
+    float: left;
+    margin: 0 10px;
+    font-size: 35.5px;
+}
+.section_label
+{
+    margin: 0;
+    text-align: center;
+}
+
+/*Time Left Section*/
+#timer_section
+{
+    font-weight: 800;
+    margin-top: 15px;
+}
+#time-left
+{
+    margin: 0;
+    font-size: 70px;
+    text-align: center;
+}
+
+/*Buttons and Sound Options sections*/
+#buttons
+{
+    text-align: center;
+    margin: 25px 0;
+}
+button
+{
+    margin: 0 15px;
+    font-size: 17.5px;
+}
+#sound_options_label
+{
+    display: inline;
+    font-size: 15px;
+    font-weight: 600;
+}
+label
+{
+    margin: 0 10px;
+    font-size: 17.5px;
+    font-weight: 700;
+}
