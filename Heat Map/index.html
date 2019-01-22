@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Scatter Plot</title>
+    <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <style type="text/css">
+        body
+        {
+            background-color: #e3e3e3;
+        }
+        svg
+        {
+            background-color: white;
+        }
+        #title
+        {    
+            font-size: 30px;
+            font-weight: 600;
+        }
+        #tooltip
+        {
+            padding: 6px;
+            background-color: rgba(209, 255, 237, 0.93)
+        }
+    </style>
+    <script>
+    "use strict";
+    $(document).ready(function()
+    {
+        var svg_width = 1200;
+        var svg_height = 600;
+        var padding = 40;
+        var chart_width = (svg_width - (2 * padding));
+        var chart_height = (svg_height - (2 * padding));
+        
+        var mydata;
+        var url = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json";
+        var req = new XMLHttpRequest();
+        req.onload = function()
+        {
+            console.log("yo");
+            var myjson = JSON.parse(req.responseText);
+            //console.log(myjson.baseTemperature);
+            var base_temp = myjson.baseTemperature;
+            mydata = myjson.monthlyVariance;
+        
+                
+                
+                
+            var chart_svg = d3.select("#chart_div")
+                .append("svg")
+                .attr("width",svg_width)
+                .attr("height",svg_height)
+                .attr("id","chart");
+            var title = chart_svg.append("text")
+                .attr("id","title")
+                .text("Monthly Global Land-Surface Temperature")
+                .attr("x",(svg_width/2))
+                .attr("y",35)
+                .style("text-anchor", "middle");
+            chart_svg.append("text")
+                .attr("id","description")
+                .text("A description")
+                .attr("x",50)
+                .attr("y",50);
+            console.log(mydata);
+            
+            var xmin = d3.min(mydata, function(d)
+            {
+                return d.year;
+            });
+            var xmax = d3.max(mydata, function(d)
+            {
+                return d.year;
+            });
+            var xscale = d3.scaleLinear().domain([xmin,xmax]).range([padding, padding + chart_width]);
+            var xaxis = d3.axisBottom(xscale).tickFormat(d3.format("d"));
+            chart_svg.append("g")
+                .attr("id","x-axis")
+                .attr("transform","translate(0," + (svg_height - padding) + ")")
+                .call(xaxis);
+            
+            
+            var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            console.log(months);
+            var yscale = d3.scaleLinear().domain([0,(months.length-1)]).range([padding,padding + chart_height]);
+            var yaxis = d3.axisLeft(yscale)
+                .tickFormat(function(d,i)
+                {
+                    return months[i];
+                });
+            chart_svg.append("g")
+                .attr("id","y-axis")
+                .attr("transform","translate(" + padding + ",0)")
+                .call(yaxis);
+                
+            
+            
+            
+            
+            
+            
+            var cell_width = (chart_width/(xmax - xmin));
+            var cell_height = (chart_height/months.length);
+            var min_temp = d3.min(mydata,function(d)
+            {
+                return base_temp + d.variance;
+            });
+            var max_temp = d3.max(mydata,function(d)
+            {
+                return base_temp + d.variance;
+            });
+            /*
+            console.log(base_temp);
+            console.log(min_temp);
+            console.log(max_temp);
+            console.log((max_temp - min_temp)/4);
+            *
+            console.log(((max_temp - min_temp)/4) * 1);
+            console.log(((max_temp - min_temp)/4) * 2);
+            console.log(((max_temp - min_temp)/4) * 3);
+            console.log(((max_temp - min_temp)/4) * 4);
+            */
+            
+            console.log(max_temp - (((max_temp - min_temp)/4) * 1));
+            console.log(max_temp - (((max_temp - min_temp)/4) * 2));
+            console.log(max_temp - (((max_temp - min_temp)/4) * 3));
+            console.log(max_temp - (((max_temp - min_temp)/4) * 4));
+            
+            var tooltip = d3.select("body")
+                .append("div")
+                .attr("id","tooltip")
+                .style("position","absolute");
+            
+            chart_svg.selectAll("rect")
+                .data(mydata)
+                .enter()
+                .append("rect")
+                .attr("class","cell")
+                .attr("data-month", (d) => (d.month - 1))
+                .attr("data-year", (d) => d.year)
+                .attr("data-temp", (d) => d.variance)
+                .attr("x", function(d)
+                {
+                    return xscale(d.year);
+                })
+                .attr("y", function(d)
+                {
+                    //console.log(d);
+                    return yscale(d.month-1);
+                })
+                .attr("width", cell_width)
+                .attr("height", cell_height)
+                .attr("fill",function(d)
+                {
+                    //console.log(base_temp + d.variance);
+                    var my_temp = (base_temp + d.variance);
+                    if(my_temp >= (max_temp - (((max_temp - min_temp)/4) * 1)))
+                    {
+                        return "rgb(215, 48, 39)";
+                    }
+                    else if(my_temp >= (max_temp - (((max_temp - min_temp)/4) * 2)))
+                    {
+                        return "rgb(254, 224, 144)";
+                    }
+                    else if(my_temp >= (max_temp - (((max_temp - min_temp)/4) * 3)))
+                    {
+                        return "rgb(224, 243, 248)";
+                    }
+                    else if(my_temp >= (max_temp - (((max_temp - min_temp)/4) * 4)))
+                    {
+                        return "rgb(69, 117, 180)";
+                    }
+                })
+                .on("mouseover", function(d,i)
+                {
+                    tooltip.style("left", d3.event.pageX + 20 + "px")
+                        .style("top", d3.event.pageY - 15 + "px")
+                        .style("display", "inline-block")
+                        .html(function()
+                        {
+                            var html = "";
+                            html += months[(d.month - 1)] + " " + d.year + "<br>";
+                            if(d.variance >= 0)
+                            {
+                                html += "+" + d.variance + "<br>";
+                            }
+                            else
+                            {
+                                html += d.variance + "<br>";
+                            }
+                            html += base_temp + d.variance + "&#176;C";
+                            return html;
+                        })
+                        .attr("data-year",d.year);
+                    //d3.select($(".bar")[i]).style("fill","red");
+                })
+                .on("mouseout", function(d,i)
+                {
+                    tooltip.style("display", "none");
+                });
+            
+            
+            
+            
+            
+            
+            
+            
+            var legend_rect = 70;
+            var legend = d3.select("body")
+                .append("svg")
+                .attr("id","legend")
+                .attr("width", (legend_rect * 4))
+                .attr("height", legend_rect);
+            legend.append("rect")
+                .attr("width", legend_rect)
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("height", legend_rect)
+                .attr("fill","rgb(69, 117, 180)");
+            legend.append("rect")
+                .attr("width", legend_rect)
+                .attr("x", 70)
+                .attr("y", 0)
+                .attr("height", legend_rect)
+                .attr("fill","rgb(224, 243, 248)");
+            legend.append("rect")
+                .attr("width", legend_rect)
+                .attr("x", 140)
+                .attr("y", 0)
+                .attr("height", legend_rect)
+                .attr("fill","rgb(254, 224, 144)");
+            legend.append("rect")
+                .attr("width", legend_rect)
+                .attr("x", 210)
+                .attr("y", 0)
+                .attr("height", legend_rect)
+                .attr("fill","rgb(215, 48, 39)");
+        }
+        req.open("GET",url,true);
+        req.setRequestHeader('Content-Type','text/plain');
+        req.send();
+    });
+    </script>
+</head>
+<body>
+    <div id="chart_div">
+    </div>
+</body>
+</html>
