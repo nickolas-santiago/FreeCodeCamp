@@ -24,6 +24,10 @@
             padding: 6px;
             background-color: rgba(209, 255, 237, 0.93)
         }
+        #legend
+        {
+            top: 70px;
+        }
     </style>
     <script>
     "use strict";
@@ -95,7 +99,7 @@
                     .attr("id","description")
                     .text("Percentage of adults age 25 and older with a bachelor's degree or higher (2010-2014)")
                     .attr("x",(svg_width/2))
-                    .attr("y",50)
+                    .attr("y",55)
                     .style("text-anchor", "middle");
                     
                 var tooltip = d3.select("body")
@@ -147,13 +151,19 @@
                     .on("mouseout", function(d,i)
                     {
                         tooltip.style("display", "none");
-                    });                    
-                var legend_rect = 70;
+                    });              
+                    
+                var legend_rect = 20;
                 var legend = d3.select("body")
                     .append("svg")
                     .attr("id","legend")
                     .attr("width", (legend_rect * color_list.length))
-                    .attr("height", legend_rect);
+                    .attr("height", legend_rect)
+                    .style("position","absolute")
+                    .style("left",function()
+                    {
+                        return ((svg_width/2) - (this.attributes["width"].value/2) + "px");
+                    });
                 legend.selectAll("rect")
                     .data(color_list)
                     .enter()
@@ -170,6 +180,7 @@
                     {
                         return d;
                     });
+                
             }
         }
     });
