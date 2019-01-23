@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Scatter Plot</title>
+    <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <style type="text/css">
+        body
+        {
+            background-color: #e3e3e3;
+        }
+        svg
+        {
+            background-color: white;
+        }
+        #title
+        {    
+            font-size: 30px;
+            font-weight: 600;
+        }
+        #tooltip
+        {
+            padding: 6px;
+            background-color: rgba(209, 255, 237, 0.93)
+        }
+        #legend
+        {
+            border: 1px solid black;
+            padding: 8px;
+            position: absolute;
+            top: 100px;
+            left: 850px;
+        }
+        #gg
+        {
+            width: 12px;
+            height: 12px;
+            margin-top: 13px;
+            margin-left: 8px;
+            display: inline-block;
+            background-color: #7aadff;
+        }
+        #ff
+        {
+            width: 12px;
+            height: 12px;
+            margin-left: 8px;
+            display: inline-block;
+            background-color: #ff5151;
+        }
+    </style>
+    <script>
+    "use strict";
+    $(document).ready(function()
+    {
+        var svg_width = 1050;
+        var svg_height = 500;
+        var padding = 40;
+        var chart_width = (svg_width - (2 * padding));
+        var chart_height = (svg_height - (2 * padding));
+        
+        var mydata;
+        var url = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json";
+        var req = new XMLHttpRequest();
+        req.onload = function()
+        {
+            console.log("yo");
+            var myjson = JSON.parse(req.responseText);
+            //console.log(myjson);
+            mydata = myjson;
+        
+            var chart_svg = d3.select("#chart_div")
+                .append("svg")
+                .attr("width",svg_width)
+                .attr("height",svg_height)
+                .attr("id","chart");
+            var title = chart_svg.append("text")
+                .attr("id","title")
+                .text("Doping in Professional Bicycle Racing")
+                .attr("x",(svg_width/2))
+                .attr("y",35)
+                .style("text-anchor", "middle");
+            console.log(mydata);
+            
+            
+            var minx = d3.min(mydata, function (d)
+            {
+                return d.Year - 1;
+            });
+            var maxx = d3.max(mydata, function (d)
+            {
+                return d.Year + 1;
+            });
+            //console.log(minx);
+            //console.log(maxx);
+            var xscale = d3.scaleLinear()
+                .domain([minx,maxx])
+                .range([padding, padding + chart_width]);
+            var xaxis = d3.axisBottom(xscale).tickFormat(d3.format("d"));;
+            
+            var ff = d3.max(mydata, function (d)
+            {
+                return d.Seconds;
+            });
+            console.log(ff);
+            var gg = d3.min(mydata, function (d)
+            {
+                return d.Seconds;
+            });
+            console.log(gg);
+     
+            var timeFormat = d3.timeFormat("%M:%S");
+            var yscale = d3.scaleLinear()
+                .domain([gg,ff])
+                .range([padding, (svg_height - padding)]);
+            /*var fuck = [66,668,19,10,11,12,99]
+            console.log(d3.extent(fuck,function(d)
+            {
+                return d;
+            }));*/
+            var yaxis = d3.axisLeft(yscale).tickFormat(function(d)
+            {
+                var mm = Math.floor(d/60);
+                //console.log(d);
+                //console.log(d/60);
+                //console.log((d/60) - Math.floor(d/60));
+                //console.log(Math.floor(((d/60) - Math.floor(d/60)) * 60));
+                var ss = Math.floor(((d/60) - Math.floor(d/60)) * 60);
+                //console.log("vVVVVV");
+                if(ss < 10)
+                {
+                    ss = "0" + ss;
+                }
+                return mm + ":" + ss;
+            });
+            
+            
+            
+            chart_svg.append("g")
+                .attr("id","x-axis")
+                .attr("transform","translate(0," + (svg_height - padding) + ")")
+                .call(xaxis);    
+            chart_svg.append("g")
+                .attr("id","y-axis")
+                .attr("transform","translate(" + padding + ",0)")
+                .call(yaxis);
+            
+            
+            
+            var tooltip = d3.select("body")
+                .append("div")
+                .attr("id","tooltip")
+                .style("position","absolute");
+            var circle = chart_svg.selectAll("circle")
+                .data(mydata)
+                .enter()
+                .append("circle")
+                .attr("class","dot")
+                .attr("data-xvalue",(d) => d.Year)
+                .attr("data-yvalue",function(d)
+                {
+                    //return d.Time.toISOString();
+                    return d.Time;
+                })
+                .attr("cx",function(d)
+                {
+                    return xscale(d.Year);
+                })
+                .attr("cy",function(d)
+                {
+                    return yscale(d.Seconds);
+                })
+                .attr("fill",function(d)
+                {
+                    if(d.Doping == "")
+                    {
+                        return "#7aadff";
+                    }
+                    else
+                    {
+                        return "#ff5151"
+                    }
+                })
+                .attr("r",10)
+                .on("mouseover", function(d,i)
+                {
+                    tooltip.style("left", d3.event.pageX + 20 + "px")
+                        .style("top", d3.event.pageY - 15 + "px")
+                        .style("display", "inline-block")
+                        .html(function()
+                        {
+                            var html = "";
+                            html += d.Name + ": " + d.Nationality + "<br>";
+                            html += "Year: " + d.Year + "<br>";
+                            html += "Time: " + d.Time + "<br>";
+                            html += "<br>"
+                            html += d.Doping;
+                            return html;
+                        })
+                        .attr("data-year",d.Year);
+                    //d3.select($(".bar")[i]).style("fill","red");
+                })
+                .on("mouseout", function(d,i)
+                {
+                    tooltip.style("display", "none");
+                });
+            
+            var legend = d3.select("body")
+                .append("div")
+                .attr("id","legend")
+                .html(function()
+                {
+                    var html = "";
+                    html += "No doping allegations<div id='ff'></div><br>";
+                    html += "Has doping allegations<div id='gg'></div>";
+                    return html;
+                });
+        }
+        req.open("GET",url,true);
+        req.setRequestHeader('Content-Type','text/plain');
+        req.send();
+    });
+    </script>
+</head>
+<body>
+    <div id="chart_div">
+    </div>
+</body>
+</html>

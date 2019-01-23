@@ -28,9 +28,9 @@
     "use strict";
     $(document).ready(function()
     {
-        var svg_width = 1200;
-        var svg_height = 600;
-        var padding = 40;
+        var svg_width = 1280;
+        var svg_height = 700;
+        var padding = 60;
         var chart_width = (svg_width - (2 * padding));
         var chart_height = (svg_height - (2 * padding));
         
@@ -44,10 +44,7 @@
             //console.log(myjson.baseTemperature);
             var base_temp = myjson.baseTemperature;
             mydata = myjson.monthlyVariance;
-        
-                
-                
-                
+            
             var chart_svg = d3.select("#chart_div")
                 .append("svg")
                 .attr("width",svg_width)
@@ -74,6 +71,13 @@
             {
                 return d.year;
             });
+            
+            var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            
+            var cell_width = (chart_width/(xmax - xmin));
+            var cell_height = (chart_height/months.length);
+            
+            
             var xscale = d3.scaleLinear().domain([xmin,xmax]).range([padding, padding + chart_width]);
             var xaxis = d3.axisBottom(xscale).tickFormat(d3.format("d"));
             chart_svg.append("g")
@@ -82,7 +86,6 @@
                 .call(xaxis);
             
             
-            var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
             console.log(months);
             var yscale = d3.scaleLinear().domain([0,(months.length-1)]).range([padding,padding + chart_height]);
             var yaxis = d3.axisLeft(yscale)
@@ -92,17 +95,9 @@
                 });
             chart_svg.append("g")
                 .attr("id","y-axis")
-                .attr("transform","translate(" + padding + ",0)")
+                .attr("transform","translate(" + padding + "," + 20 + ")")
                 .call(yaxis);
-                
             
-            
-            
-            
-            
-            
-            var cell_width = (chart_width/(xmax - xmin));
-            var cell_height = (chart_height/months.length);
             var min_temp = d3.min(mydata,function(d)
             {
                 return base_temp + d.variance;
@@ -111,22 +106,6 @@
             {
                 return base_temp + d.variance;
             });
-            /*
-            console.log(base_temp);
-            console.log(min_temp);
-            console.log(max_temp);
-            console.log((max_temp - min_temp)/4);
-            *
-            console.log(((max_temp - min_temp)/4) * 1);
-            console.log(((max_temp - min_temp)/4) * 2);
-            console.log(((max_temp - min_temp)/4) * 3);
-            console.log(((max_temp - min_temp)/4) * 4);
-            */
-            
-            console.log(max_temp - (((max_temp - min_temp)/4) * 1));
-            console.log(max_temp - (((max_temp - min_temp)/4) * 2));
-            console.log(max_temp - (((max_temp - min_temp)/4) * 3));
-            console.log(max_temp - (((max_temp - min_temp)/4) * 4));
             
             var tooltip = d3.select("body")
                 .append("div")
@@ -147,8 +126,8 @@
                 })
                 .attr("y", function(d)
                 {
-                    //console.log(d);
                     return yscale(d.month-1);
+                    
                 })
                 .attr("width", cell_width)
                 .attr("height", cell_height)
@@ -194,20 +173,12 @@
                             return html;
                         })
                         .attr("data-year",d.year);
-                    //d3.select($(".bar")[i]).style("fill","red");
                 })
                 .on("mouseout", function(d,i)
                 {
                     tooltip.style("display", "none");
                 });
-            
-            
-            
-            
-            
-            
-            
-            
+                
             var legend_rect = 70;
             var legend = d3.select("body")
                 .append("svg")

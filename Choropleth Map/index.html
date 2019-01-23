@@ -113,6 +113,7 @@
                     .append("path")
                     .attr("d",path)
                     .attr("class","county")
+                    .attr("transform", "translate(" + 160 + "," + 70 + ")")
                     .attr("data-fips", function(d,i)
                     {
                         return reordered_education_data[i].fips;
