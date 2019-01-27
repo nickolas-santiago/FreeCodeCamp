@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Treemap Diagram</title>
+    <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <style type="text/css">
+        body
+        {
+            background-color: #e3e3e3;
+            font-family: sans-serif;
+        }
+        svg
+        {
+            background-color: white;
+        }
+        #title
+        {    
+            font-size: 30px;
+            font-weight: 600;
+        }
+        #tooltip
+        {
+            padding: 6px;
+            background-color: rgba(209, 255, 237, 0.93)
+        }
+        .tile_title
+        {
+            font-size: 9.5px;
+        }
+    </style>
+    <script>
+    "use strict";
+    $(document).ready(function()
+    {
+        var svg_width = 1020;
+        var svg_height = 600;
+        var padding = 0;
+        var top_padding = 65;
+        var chart_width = (svg_width - (2 * padding));
+        var chart_height = (svg_height - (top_padding + padding));
+        
+        //var movies_url = "https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/data/tree_map/movie-data.json";
+        var movies_url = "https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/data/tree_map/video-game-sales-data.json";
+        var movies_request = new XMLHttpRequest();
+        movies_request.open("GET", movies_url, true);
+        movies_request.send();
+        movies_request.onload = function()
+        {
+            console.log("movie data has loaded");
+            var movies_data = JSON.parse(movies_request.responseText);
+            
+            var diagram_svg = d3.select("#chart_div")
+                .append("svg")
+                .attr("width", svg_width)
+                .attr("height", svg_height)
+                .attr("id", "diagram");
+            diagram_svg.append("text")
+                .attr("id", "title")
+                .text("Movie Sales")
+                .attr("x", (svg_width/2))
+                .attr("y", 35)
+                .style("text-anchor", "middle");
+            diagram_svg.append("text")
+                .attr("id", "description")
+                .text("Top 100 Highest Grossing Movies Grouped By Genre")
+                .attr("x", (svg_width/2))
+                .attr("y", 55)
+                .style("text-anchor", "middle");
+            var tooltip = d3.select("body")
+                .append("div")
+                .attr("id", "tooltip")
+                .style("position", "absolute");
+
+            var root = d3.hierarchy(movies_data);
+            var color = d3.scaleOrdinal().range(d3.schemeCategory10);
+            var treemapLayout = d3.treemap();
+            treemapLayout.size([chart_width, chart_height]);
+            root.sum(function(d)
+            {
+                return d.value;
+            });
+            treemapLayout(root);
+        
+        
+            var cell = diagram_svg.selectAll("g")
+                .data(root.leaves())
+                .enter()
+                .append("g")
+                .attr("class", "group")
+                .attr("transform", function(d)
+                {
+                    return "translate(" + d.x0 + "," + d.y0 + ")";
+                });
+            var tile = cell.append('rect')
+                .attr("class", "tile")
+                .attr("data-name", function(d)
+                {
+                    return d.data.name;
+                })
+                .attr("data-category", function(d)
+                {
+                    return d.data.category;
+                })
+                .attr("data-value", function(d)
+                {
+                    return d.data.value;
+                })
+                .attr('width', function(d)
+                {
+                    return d.x1 - d.x0;
+                })
+                .attr('height', function(d)
+                {
+                    return d.y1 - d.y0;
+                })
+                .attr("fill", function(d)
+                {
+                    while (d.depth > 1) d = d.parent;
+                    return color(d.data.name); 
+                })
+                .attr("transform","translate(" + padding + "," + top_padding + ")")
+                .attr("stroke-width", 0.5)
+                .attr("stroke", "rgba(0,0,0,0.5)")
+                .on("mouseover", function(d)
+                {
+                    d3.select(this).attr("stroke-width", 2.5).attr("stroke", "rgba(0,0,0,1)");
+                    tooltip.style("left", d3.event.pageX + 20 + "px")
+                        .style("top", d3.event.pageY - 15 + "px")
+                        .style("display", "inline-block")
+                        .attr("data-value", d.data.value)
+                        .html(function()
+                        {
+                            var html = "";
+                            html += "Movie: " + d.data.name + "<br>";
+                            html += "Category: " + d.data.category + "<br>";                        
+                            html += "Value: " + d.data.value + "<br>";                        
+                            return html;
+                        });
+                })
+                .on("mousemove", function(d,i)
+                {
+                    tooltip
+                        .style("left", d3.event.pageX + 20 + "px")
+                        .style("top", d3.event.pageY - 15 + "px")
+                })
+                .on("mouseout", function(d,i)
+                {
+                    d3.select(this).attr("stroke-width", 0.5).attr("stroke", "rgba(0,0,0,0.5)")
+                    tooltip.style("display", "none");
+                });
+            cell.append("text")
+                .selectAll("text")
+                .data(function (d)
+                {
+                    return d.data.name.split(" ");
+                })
+                .enter()
+                .append("tspan")
+                .attr("class", "tile_title")
+                .attr("x", function(d)
+                {
+                    return (padding + 4);
+                })
+                .attr("y", function (d,i)
+                {
+                    return top_padding + (13 + i * 10);
+                })
+                .text(function(d)
+                {
+                    return d;
+                })
+                .style("pointer-events", "none");
+                
+            var data_children = movies_data.children;
+            var legend_box = 23;
+            var legend_box_padding = 10;
+            var longest_text_length = 0;
+            var legend = d3.select("body")
+                .append("svg")
+                .attr("id","legend")
+                .attr("height", (legend_box_padding + ((legend_box + legend_box_padding) * data_children.length)));
+            legend.selectAll("rect")
+                .data(movies_data.children)
+                .enter()
+                .append("rect")
+                .attr("class", "legend-item")
+                .attr("x",function(d)
+                {
+                    return legend_box_padding;
+                })
+                .attr("y",function(d, i)
+                {
+                    return (legend_box_padding + (i * (legend_box_padding + legend_box)));
+                })
+                .attr("width", legend_box)
+                .attr("height", legend_box)
+                .attr("fill", function(d)
+                {
+                    return (color(d.name));
+                })
+            legend.selectAll("text")
+                .data(movies_data.children)
+                .enter()
+                .append("text")
+                .attr("x",function(d)
+                {
+                    return (legend_box_padding + legend_box + (legend_box_padding/2));
+                })
+                .attr("y",function(d, i)
+                {
+                    return (((i + 1) * (legend_box_padding + legend_box)) - (legend_box/4));
+                })
+                .text(function(d)
+                {
+                    return d.name;
+                })
+                .each(function(d,i)
+                {
+                    if(this.getComputedTextLength() > longest_text_length)
+                    {
+                        longest_text_length = this.getComputedTextLength();
+                    }
+                });
+            legend.attr("width", (legend_box_padding * 2) + legend_box + longest_text_length);
+        };
+    });
+    </script>
+</head>
+<body>
+    <div id="chart_div">
+    </div>
+</body>
+</html>
