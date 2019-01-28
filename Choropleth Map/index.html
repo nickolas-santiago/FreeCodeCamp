@@ -10,6 +10,14 @@
         {
             background-color: #e3e3e3;
         }
+        #chart_div
+        {
+            display: flex;
+        }
+        #chart
+        {
+            margin: 30px auto 0 auto;
+        }
         svg
         {
             background-color: white;
@@ -113,7 +121,7 @@
                     .append("path")
                     .attr("d",path)
                     .attr("class","county")
-                    .attr("transform", "translate(" + 160 + "," + 70 + ")")
+                    .attr("transform", "translate(" + 160 + "," + 85 + ")")
                     .attr("data-fips", function(d,i)
                     {
                         return reordered_education_data[i].fips;
@@ -153,35 +161,52 @@
                     {
                         tooltip.style("display", "none");
                     });              
-                    
-                var legend_rect = 20;
-                var legend = d3.select("body")
-                    .append("svg")
-                    .attr("id","legend")
-                    .attr("width", (legend_rect * color_list.length))
-                    .attr("height", legend_rect)
-                    .style("position","absolute")
-                    .style("left",function()
-                    {
-                        return ((svg_width/2) - (this.attributes["width"].value/2) + "px");
-                    });
-                legend.selectAll("rect")
-                    .data(color_list)
-                    .enter()
-                    .append("rect")
-                    .attr("width", legend_rect)
-                    .attr("height", legend_rect)
-                    .attr("x", function(d,i)
-                    {
-                        //---the colors are set backwards, so the legend has to go backwards
-                        return ((legend_rect * color_list.length) - (legend_rect * (i + 1)));
-                    })
-                    .attr("y", 0)
-                    .attr("fill", function(d)
-                    {
-                        return d;
-                    });
                 
+                
+                
+                
+                
+            var legend_rect = 25;
+            var legend_starting_ypos = 75;
+            var legend = d3.select("svg")
+                .append("g")
+                .attr("id","legend");
+            legend.selectAll("rect")
+                .data(color_list)
+                .enter()
+                .append("rect")
+                .attr("x", function(d,i)
+                {
+                    return ((svg_width/2) - (legend_rect * (i + 1)) + ((legend_rect * color_list.length)/2));
+                })
+                .attr("y", legend_starting_ypos)
+                .attr("width", legend_rect)
+                .attr("height", legend_rect)
+                .attr("fill", (d) => d);
+                
+            var legendThreshold = d3.scaleThreshold()
+                .domain(function (min, max, count)
+                {
+                    var array = [];
+                    var step = ((max - min)/count);
+                    var base = min;
+                    for(var i = 1; i < count; i++)
+                    {
+                        array.push(base + i * step);
+                    }
+                    return array;
+                }
+                (lowest_bdnum, highest_bdnum, color_list.length))
+                .range(color_list);
+            var colorscale = d3.scaleLinear()
+                .domain([lowest_bdnum,highest_bdnum])
+                .range([0,(color_list.length * legend_rect)]);
+            var legendaxis = d3.axisBottom(colorscale)
+                .tickValues(legendThreshold.domain())
+                .tickFormat(d3.format(".1f"));
+            legend.append("g")
+                .attr("transform","translate(" + ((svg_width/2) - ((legend_rect * color_list.length)/2)) + "," + (legend_starting_ypos + legend_rect) + ")")
+                .call(legendaxis);
             }
         }
     });
