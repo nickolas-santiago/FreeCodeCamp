@@ -130,7 +130,7 @@
                             return html;
                         })
                         .attr("data-date", d[0]);
-                    //d3.select($(".bar")[i]).style("fill","red");
+                    d3.select($(".bar")[i]).style("fill","red");
                 })
                 .on("mousemove", function(d,i)
                 {
@@ -147,7 +147,7 @@
         req.open("GET",url,true);
         req.setRequestHeader('Content-Type','text/plain');
         req.send();
-    };
+    });
     </script>
 </head>
 <body>

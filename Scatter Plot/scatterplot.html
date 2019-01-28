@@ -9,6 +9,14 @@
         {
             background-color: #e3e3e3;
         }
+        #chart_div
+        {
+            display: flex;
+        }
+        #chart
+        {
+            margin: 65px auto 0 auto;
+        }
         svg
         {
             background-color: white;
@@ -20,6 +28,7 @@
         }
         #tooltip
         {
+            display: none;
             padding: 6px;
             background-color: rgba(209, 255, 237, 0.93)
         }
@@ -28,25 +37,25 @@
             border: 1px solid black;
             padding: 8px;
             position: absolute;
-            top: 100px;
-            left: 850px;
+            top: 165px;
+            right: 23%;
         }
-        #gg
+        #ff
         {
             width: 12px;
             height: 12px;
             margin-top: 13px;
             margin-left: 8px;
             display: inline-block;
-            background-color: #7aadff;
+            background-color: #ff5151;
         }
-        #ff
+        #gg
         {
             width: 12px;
             height: 12px;
             margin-left: 8px;
             display: inline-block;
-            background-color: #ff5151;
+            background-color: #7aadff;
         }
     </style>
     <script>
@@ -66,7 +75,6 @@
         {
             console.log("yo");
             var myjson = JSON.parse(req.responseText);
-            //console.log(myjson);
             mydata = myjson;
         
             var chart_svg = d3.select("#chart_div")
@@ -80,8 +88,10 @@
                 .attr("x",(svg_width/2))
                 .attr("y",35)
                 .style("text-anchor", "middle");
-            console.log(mydata);
-            
+            var tooltip = d3.select("body")
+                .append("div")
+                .attr("id","tooltip")
+                .style("position","absolute");
             
             var minx = d3.min(mydata, function (d)
             {
@@ -91,50 +101,33 @@
             {
                 return d.Year + 1;
             });
-            //console.log(minx);
-            //console.log(maxx);
             var xscale = d3.scaleLinear()
                 .domain([minx,maxx])
                 .range([padding, padding + chart_width]);
             var xaxis = d3.axisBottom(xscale).tickFormat(d3.format("d"));;
             
-            var ff = d3.max(mydata, function (d)
+            var yscale_min = d3.min(mydata, function (d)
             {
                 return d.Seconds;
             });
-            console.log(ff);
-            var gg = d3.min(mydata, function (d)
+            var yscale_max = d3.max(mydata, function (d)
             {
                 return d.Seconds;
             });
-            console.log(gg);
-     
             var timeFormat = d3.timeFormat("%M:%S");
             var yscale = d3.scaleLinear()
-                .domain([gg,ff])
+                .domain([yscale_min,yscale_max])
                 .range([padding, (svg_height - padding)]);
-            /*var fuck = [66,668,19,10,11,12,99]
-            console.log(d3.extent(fuck,function(d)
-            {
-                return d;
-            }));*/
             var yaxis = d3.axisLeft(yscale).tickFormat(function(d)
             {
-                var mm = Math.floor(d/60);
-                //console.log(d);
-                //console.log(d/60);
-                //console.log((d/60) - Math.floor(d/60));
-                //console.log(Math.floor(((d/60) - Math.floor(d/60)) * 60));
-                var ss = Math.floor(((d/60) - Math.floor(d/60)) * 60);
-                //console.log("vVVVVV");
-                if(ss < 10)
+                var minutes_ = Math.floor(d/60);
+                var seconds_ = Math.floor(((d/60) - Math.floor(d/60)) * 60);
+                if(seconds_ < 10)
                 {
-                    ss = "0" + ss;
+                    seconds_ = "0" + seconds_;
                 }
-                return mm + ":" + ss;
+                return minutes_ + ":" + seconds_;
             });
-            
-            
             
             chart_svg.append("g")
                 .attr("id","x-axis")
@@ -145,12 +138,6 @@
                 .attr("transform","translate(" + padding + ",0)")
                 .call(yaxis);
             
-            
-            
-            var tooltip = d3.select("body")
-                .append("div")
-                .attr("id","tooltip")
-                .style("position","absolute");
             var circle = chart_svg.selectAll("circle")
                 .data(mydata)
                 .enter()
@@ -159,7 +146,6 @@
                 .attr("data-xvalue",(d) => d.Year)
                 .attr("data-yvalue",function(d)
                 {
-                    //return d.Time.toISOString();
                     return d.Time;
                 })
                 .attr("cx",function(d)
@@ -192,13 +178,16 @@
                             var html = "";
                             html += d.Name + ": " + d.Nationality + "<br>";
                             html += "Year: " + d.Year + "<br>";
-                            html += "Time: " + d.Time + "<br>";
-                            html += "<br>"
-                            html += d.Doping;
+                            html += "Time: " + d.Time;
+                            if(d.Doping != "")
+                            {
+                                html += "<br>"
+                                html += "<br>"
+                                html += d.Doping;
+                            }
                             return html;
                         })
                         .attr("data-year",d.Year);
-                    //d3.select($(".bar")[i]).style("fill","red");
                 })
                 .on("mouseout", function(d,i)
                 {
@@ -211,8 +200,8 @@
                 .html(function()
                 {
                     var html = "";
-                    html += "No doping allegations<div id='ff'></div><br>";
-                    html += "Has doping allegations<div id='gg'></div>";
+                    html += "No doping allegations<div id='gg'></div><br>";
+                    html += "Has doping allegations<div id='ff'></div>";
                     return html;
                 });
         }
