@@ -28,6 +28,7 @@ class App extends React.Component
     }
     clickHandler(button_id, button_parentnode)
     {
+        console.log("yooooooooooooooooooo");
         if(this.state.running == false)
         {
             var changeState = function(self, changing_state, new_length, current_label, time_length_state)
@@ -73,6 +74,7 @@ class App extends React.Component
     }
     reset()
     {
+        console.log("yooooooooooooooooooo");
         if(document.getElementById("beep").paused == false)
         {
             document.getElementById("beep").pause();
@@ -92,6 +94,7 @@ class App extends React.Component
     }
     startstop()
     {
+        console.log("yooooooooooooooooooo");
         if(this.state.running == false)
         {
             this.setState({
@@ -109,6 +112,7 @@ class App extends React.Component
     }
     beginTimerInterval()
     {
+        console.log("yooooooooooooooooooo");
         var self = this;
         my_timer = setInterval(function()
         {
@@ -174,7 +178,7 @@ class App extends React.Component
             </div>             
             <Timer time_left={timeleft} timer_label={this.state.timer_label}/>
             <div id="buttons">
-                <button id="start_stop" classonClick={this.startstop}>Start/Stop</button>
+                <button id="start_stop" onClick={this.startstop}>Start/Stop</button>
                 <button id="reset" onClick={this.reset}>Reset</button>
             </div>
             <div id="sound_options_section">
